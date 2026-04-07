@@ -1,0 +1,404 @@
+---
+import '../../styles/home.css';
+import { withBase } from '../../utils/baseUrl';
+import homeEnhancementsUrl from '../../scripts/home-enhancements.ts?url';
+---
+
+<!-- Hero Section with Decorative Elements -->
+<canvas id="vineCanvas" aria-hidden="true"></canvas>
+
+<div class="hero-stage">
+<section class="hero">
+  <div class="hero-content">
+    <div class="hero-badge">
+      <span class="badge-icon">🧬</span>
+      <span class="badge-text">Synthetic Biology</span>
+    </div>
+
+    <h1 class="hero-title">
+      <span class="title-main">Soil Microbiome</span>
+      <span class="title-sub">
+        <span
+          class="typed-sub js-typed"
+          data-typed-text="Engineering the Future of Agriculture"
+          data-type-speed="38"
+          data-show-cursor="true"
+          data-cursor-char="|"
+          style="white-space: pre-wrap;"
+        ></span>
+      </span>
+    </h1>
+
+    <p class="hero-description">
+      <span
+        class="typed-desc js-typed"
+        data-typed-text="Discover the power of Bacillus subtilis communities. Transform soil ecosystems through CRISPR-Cas enabled synthetic biology and sustainable agricultural innovation."
+        data-type-speed="32"
+        data-show-cursor="true"
+        data-cursor-char="|"
+        style="white-space: pre-wrap;"
+      ></span>
+    </p>
+
+    <div class="hero-cta">
+      <a href={withBase('description')} class="btn btn-primary">
+        <span class="btn-icon">→</span>
+        <span class="btn-text">Explore Project</span>
+      </a>
+      <a href={withBase('model')} class="btn btn-secondary">
+        <span class="btn-text">Learn More</span>
+      </a>
+    </div>
+
+    <div class="hero-stats">
+      <div class="stat"><span class="stat-num">1000+</span><span class="stat-label">Species Analyzed</span></div>
+      <div class="stat"><span class="stat-num">50%</span><span class="stat-label">Yield Increase</span></div>
+      <div class="stat"><span class="stat-num">30+</span><span class="stat-label">Partners</span></div>
+    </div>
+  </div>
+
+  <div class="hero-visual">
+    <div class="microbe-animation">
+      <div class="microbe microbe-1"></div>
+      <div class="microbe microbe-2"></div>
+      <div class="microbe microbe-3"></div>
+      <div class="dna-helix"></div>
+      <div class="soil-particle"></div>
+    </div>
+  </div>
+
+</section>
+
+<div class="hero-bottom-wave" aria-hidden="true">
+  <img src={withBase('hero-bottom-wave.svg')} alt="" />
+</div>
+</div>
+
+<!-- About Section -->
+<section class="section about parallax-section" id="about" data-depth="0.13">
+  <div class="section-bg"></div>
+  <div class="container">
+    <div class="section-header">
+      <h2 class="section-title draw-title">Project Overview</h2>
+      <p class="section-subtitle" id="story-start-anchor">Transforming Agriculture Through Microbial Science</p>
+    </div>
+
+    <div class="about-story" id="about-storyline">
+      <article class="story-node node-challenge story-stage stage-challenge" id="act1">
+        <div class="story-side story-wide story-slot slot-top-center slot-enter-vertical-down">
+          <div class="story-panel">
+          <span class="story-kicker">Act I</span>
+          <h3>Challenge: A System Under Stress</h3>
+          <p>
+            Across intensive farming regions, soil organic matter has dropped by
+            <span class="story-metric" data-counter="38" data-suffix="%">0%</span>, while beneficial microbial diversity is down
+            <span class="story-metric" data-counter="46" data-suffix="%">0%</span>.
+            Every season, roughly <span class="story-metric" data-counter="24" data-suffix="M ha">0 M ha</span>
+            of productive land faces declining resilience. The risk is immediate and compounding.
+          </p>
+          </div>
+        </div>
+        <div class="story-side story-narrow story-slot slot-upper-right slot-enter-right" aria-hidden="true">
+          <div class="story-panel challenge-visual">
+          <div class="threat-radar">
+            <span class="ring r1"></span>
+            <span class="ring r2"></span>
+            <span class="ring r3"></span>
+            <span class="ring r4"></span>
+            <span class="radar-core"></span>
+          </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="story-node node-solution story-stage stage-solution" id="act2">
+        <div class="story-side story-narrow story-slot slot-middle-left slot-enter-left">
+          <div class="story-panel">
+          <span class="story-kicker">Act II</span>
+          <h3>Solution: Programmable Microbiome</h3>
+          <p>
+            We design a modular Bacillus-centered consortium, combining sensing, protection, and nutrient-boosting pathways.
+            The strategy links synthetic biology with deployment-ready formulations to recover soil function at field scale.
+          </p>
+          </div>
+        </div>
+        <div class="story-side story-wide story-slot slot-middle-right slot-enter-right" aria-hidden="true">
+          <div class="story-panel solution-visual">
+          <div class="solution-waves">
+            <span class="wave w1"></span>
+            <span class="wave w2"></span>
+            <span class="wave w3"></span>
+            <span class="wave w4"></span>
+            <span class="wave w5"></span>
+          </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="story-node node-scope story-stage stage-scope" id="act3">
+        <div class="story-side story-narrow story-slot slot-lower-left slot-enter-left">
+          <div class="story-panel story-chart-panel">
+          <h3>Experimental Scope</h3>
+          <div class="range-chart" role="img" aria-label="Experimental scope by module">
+            <div class="range-bars">
+              <div class="range-bar" style="--bar-target: 82%;">
+                <span class="range-label">Strain Library</span>
+                <span class="range-fill"></span>
+                <span class="range-value" data-target="82" data-suffix="%">0%</span>
+              </div>
+              <div class="range-bar" style="--bar-target: 74%;">
+                <span class="range-label">Gene Circuits</span>
+                <span class="range-fill"></span>
+                <span class="range-value" data-target="74" data-suffix="%">0%</span>
+              </div>
+              <div class="range-bar" style="--bar-target: 66%;">
+                <span class="range-label">Field Replicates</span>
+                <span class="range-fill"></span>
+                <span class="range-value" data-target="66" data-suffix="%">0%</span>
+              </div>
+              <div class="range-bar" style="--bar-target: 58%;">
+                <span class="range-label">Climate Scenarios</span>
+                <span class="range-fill"></span>
+                <span class="range-value" data-target="58" data-suffix="%">0%</span>
+              </div>
+            </div>
+          </div>
+          </div>
+        </div>
+        <div class="story-side story-wide story-slot slot-lower-right slot-enter-right">
+          <div class="story-panel scope-copy">
+          <span class="story-kicker">Act III</span>
+          <h3>From Bench to Multi-Site Validation</h3>
+          <p>
+            The workflow spans strain screening, circuit characterization, greenhouse verification, and replicated field trials,
+            allowing us to quantify robustness rather than single-point performance.
+          </p>
+          </div>
+        </div>
+      </article>
+
+      <article class="story-node node-impact story-stage stage-impact" id="act4">
+        <div class="story-side story-narrow story-slot slot-bottom-left slot-enter-left">
+          <div class="story-panel impact-copy">
+          <span class="story-kicker">Act IV</span>
+          <h3>Outcome: Measurable Recovery</h3>
+          <p>
+            Early deployment shows coordinated gains in productivity, soil health, and input efficiency,
+            demonstrating why intervention at the microbiome level is both urgent and practical.
+          </p>
+          </div>
+        </div>
+        <div class="story-side story-wide story-slot slot-bottom-center slot-enter-vertical-up">
+          <div class="story-panel story-chart-panel">
+          <div class="impact-chart" role="img" aria-label="Outcome composition across yield, disease suppression and fertilizer savings">
+            <div class="impact-radial" aria-hidden="true">
+              <div class="impact-rings">
+                <span class="impact-ring ghost-ring" style="--size: 74px; --ghost-sweep: 0.47;"></span>
+                <span class="impact-ring ghost-ring" style="--size: 92px; --ghost-sweep: 0.5;"></span>
+                <span class="impact-ring ghost-ring" style="--size: 110px; --ghost-sweep: 0.53;"></span>
+                <span class="impact-ring ghost-ring" style="--size: 128px; --ghost-sweep: 0.56;"></span>
+                <span class="impact-ring ghost-ring" style="--size: 146px; --ghost-sweep: 0.59;"></span>
+                <span class="impact-ring ghost-ring" style="--size: 164px; --ghost-sweep: 0.62;"></span>
+                <span class="impact-ring ghost-ring" style="--size: 182px; --ghost-sweep: 0.65;"></span>
+                <span class="impact-ring ghost-ring" style="--size: 200px; --ghost-sweep: 0.68;"></span>
+
+                <span class="impact-ring active-ring" data-target="0.12" style="--size: 74px; --delay: 0ms;"></span>
+                <span class="impact-ring active-ring" data-target="0.15" style="--size: 92px; --delay: 80ms;"></span>
+                <span class="impact-ring active-ring" data-target="0.18" style="--size: 110px; --delay: 160ms;"></span>
+                <span class="impact-ring active-ring" data-target="0.21" style="--size: 128px; --delay: 240ms;"></span>
+                <span class="impact-ring active-ring" data-target="0.24" style="--size: 146px; --delay: 320ms;"></span>
+                <span class="impact-ring active-ring" data-target="0.27" style="--size: 164px; --delay: 400ms;"></span>
+                <span class="impact-ring active-ring" data-target="0.3" style="--size: 182px; --delay: 480ms;"></span>
+                <span class="impact-ring active-ring" data-target="0.33" style="--size: 200px; --delay: 560ms;"></span>
+              </div>
+              <span class="impact-core-dot"></span>
+            </div>
+            <ul class="impact-legend">
+              <li><span class="dot dot-yield"></span>Yield gain 45%</li>
+              <li><span class="dot dot-disease"></span>Disease drop 33%</li>
+              <li><span class="dot dot-input"></span>Fertilizer saved 22%</li>
+            </ul>
+          </div>
+          </div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- Features Section -->
+<section class="section features parallax-section" id="features" data-depth="0.18">
+  <div class="container">
+    <div class="section-header">
+      <h2 class="section-title draw-title">Core Components</h2>
+      <p class="section-subtitle">Six Pillars of Innovation</p>
+    </div>
+
+    <div class="features-grid">
+      <div class="feature-item">
+        <div class="feature-media split-x visual-1" style={`--feature-image:url('${withBase('wavy-background.svg')}')`} aria-hidden="true">
+          <span class="media-panel panel-a"></span>
+          <span class="media-panel panel-b"></span>
+        </div>
+        <div class="feature-content">
+          <div class="feature-num">01</div>
+          <div class="feature-icon accent-1">🔬</div>
+          <h3>Strain Engineering</h3>
+          <p>Advanced genetic modification and metabolic engineering of microbial strains for enhanced agricultural performance with <span class="micro-term">CRISPR-Cas<span class="micro-tooltip"><img src={`${withBase('microbe/crispr.svg')}`} alt="CRISPR gene editing map" loading="lazy" /><span>通过编辑导向 RNA 和 Cas 蛋白实现定点改造。</span></span></span>.</p>
+          <span class="feature-badge badge-1">Biotechnology</span>
+        </div>
+      </div>
+
+      <div class="feature-item">
+        <div class="feature-media split-y visual-2" style={`--feature-image:url('${withBase('wavy-background.svg')}')`} aria-hidden="true">
+          <span class="media-panel panel-a"></span>
+          <span class="media-panel panel-b"></span>
+        </div>
+        <div class="feature-content">
+          <div class="feature-num">02</div>
+          <div class="feature-icon accent-2">🌐</div>
+          <h3>Ecosystem Restoration</h3>
+          <p>Build complete microbial consortia to restore soil microecological balance and improve soil fertility.</p>
+          <span class="feature-badge badge-2">Ecology</span>
+        </div>
+      </div>
+
+      <div class="feature-item">
+        <div class="feature-media slide-lr visual-3" style={`--feature-image:url('${withBase('microbe/crispr.svg')}')`} aria-hidden="true">
+          <span class="media-panel panel-a"></span>
+          <span class="media-panel panel-b"></span>
+        </div>
+        <div class="feature-content">
+          <div class="feature-num">03</div>
+          <div class="feature-icon accent-3">🛡️</div>
+          <h3>Bioprotection</h3>
+          <p>Harness microbial competition and metabolites to suppress plant pathogens and reduce chemical pesticide use.</p>
+          <span class="feature-badge badge-3">Microbiology</span>
+        </div>
+      </div>
+
+      <div class="feature-item">
+        <div class="feature-media slide-rl visual-4" style={`--feature-image:url('${withBase('microbe/synbio.svg')}')`} aria-hidden="true">
+          <span class="media-panel panel-a"></span>
+          <span class="media-panel panel-b"></span>
+        </div>
+        <div class="feature-content">
+          <div class="feature-num">04</div>
+          <div class="feature-icon accent-4">♻️</div>
+          <h3>Sustainable Implementation</h3>
+          <p>Develop farmer-friendly bioformulations and enable scalable field adoption across diverse agricultural systems.</p>
+          <span class="feature-badge badge-4">Application</span>
+        </div>
+      </div>
+
+      <div class="feature-item">
+        <div class="feature-media split-x visual-5" style={`--feature-image:url('${withBase('wavy-background.svg')}')`} aria-hidden="true">
+          <span class="media-panel panel-a"></span>
+          <span class="media-panel panel-b"></span>
+        </div>
+        <div class="feature-content">
+          <div class="feature-num">05</div>
+          <div class="feature-icon accent-5">📊</div>
+          <h3>Environmental Monitoring</h3>
+          <p>Establish comprehensive monitoring systems to quantify microbial dynamics and ecological performance in real time.</p>
+          <span class="feature-badge badge-5">Analytics</span>
+        </div>
+      </div>
+
+      <div class="feature-item">
+        <div class="feature-media split-y visual-6" style={`--feature-image:url('${withBase('wavy-background.svg')}')`} aria-hidden="true">
+          <span class="media-panel panel-a"></span>
+          <span class="media-panel panel-b"></span>
+        </div>
+        <div class="feature-content">
+          <div class="feature-num">06</div>
+          <div class="feature-icon accent-6">🤝</div>
+          <h3>Social Impact</h3>
+          <p>Collaborate with farming communities and promote green agriculture certification for economic and environmental benefits.</p>
+          <span class="feature-badge badge-6">Community</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Research Timeline Section -->
+<section class="section research parallax-section" data-depth="0.24">
+  <div class="container">
+    <div class="section-header">
+      <h2 class="section-title draw-title">Research Roadmap</h2>
+      <p class="section-subtitle">Four Key Development Phases</p>
+    </div>
+
+    <div class="research-timeline">
+      <div class="timeline-item">
+        <div class="timeline-marker"></div>
+        <div class="timeline-content">
+          <h3>Phase I: Strain Screening</h3>
+          <p>Isolate high-efficiency microbial strains from natural soil environments and conduct functional assessments and physiological characterization.</p>
+          <div class="timeline-badge">Week 1-2</div>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-marker"></div>
+        <div class="timeline-content">
+          <h3>Phase II: Genetic Modification</h3>
+          <p>Design synthetic pathways and utilize <span class="micro-term">CRISPR technology<span class="micro-tooltip"><img src={`${withBase('microbe/crispr.svg')}`} alt="CRISPR technology micro chart" loading="lazy" /><span>在基因位点插入、敲除、激活目标功能模块。</span></span></span> to enhance target microbial functions and agricultural traits.</p>
+          <div class="timeline-badge">Week 3-6</div>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-marker"></div>
+        <div class="timeline-content">
+          <h3>Phase III: Field Trials</h3>
+          <p>Conduct extensive field experiments to evaluate bioformulation efficacy and measure yield improvements and soil quality metrics.</p>
+          <div class="timeline-badge">Week 7-10</div>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-marker"></div>
+        <div class="timeline-content">
+          <h3>Phase IV: Commercialization</h3>
+          <p>Optimize production processes, establish safety standards, and scale-up implementation for global agricultural markets.</p>
+          <div class="timeline-badge">Week 11-13</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA Section -->
+<section class="section cta-section parallax-section" data-depth="0.4">
+  <div class="cta-elements">
+    <div class="cta-circle circle-cta-1"></div>
+    <div class="cta-circle circle-cta-2"></div>
+    <div class="cta-circle circle-cta-3"></div>
+  </div>
+  <div class="container">
+    <div class="cta-content">
+      <h2>Explore Our Project</h2>
+      <p>Jump into each module and discover how our iGEM work connects from idea to implementation.</p>
+      <div class="cta-buttons">
+        <a href={withBase('description')} class="btn btn-primary btn-lg">Description</a>
+        <a href={withBase('hardware')} class="btn btn-secondary btn-lg">Hardware</a>
+        <a href={withBase('model')} class="btn btn-secondary btn-lg">Model</a>
+        <a href={withBase('experiments')} class="btn btn-secondary btn-lg">Experiments</a>
+        <a href={withBase('human-practices')} class="btn btn-secondary btn-lg">Human Practices</a>
+        <a href={withBase('awards')} class="btn btn-secondary btn-lg">Awards</a>
+        <a href={withBase('team')} class="btn btn-secondary btn-lg">Team</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<button class="back-to-top" id="back-to-top" type="button" aria-label="Back to top">
+  <span class="back-to-top-logo" aria-hidden="true">
+    <img src={withBase('brand-mark.svg')} alt="" loading="lazy" />
+  </span>
+  <span class="back-to-top-arrow" aria-hidden="true">↑</span>
+</button>
+
+<script type="module" src={homeEnhancementsUrl}></script>

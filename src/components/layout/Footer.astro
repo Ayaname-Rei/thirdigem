@@ -1,0 +1,73 @@
+---
+import '../../styles/footer.css';
+import { withBase, getHomeUrl } from '../../utils/baseUrl';
+import footerRuntimeUrl from '../../scripts/footer-runtime.ts?url';
+---
+
+<footer class="igem-footer">
+  <div class="footer-gradient"></div>
+
+  <div class="footer-content">
+    <div class="footer-section">
+      <h3 class="footer-title">
+        <span class="title-icon">🧬</span>
+        iGEM 2026 Soil Microbiome
+      </h3>
+      <p class="footer-desc">
+        Engineering sustainable agriculture through advanced synthetic biology and microbial innovation.
+      </p>
+      <div class="footer-accent"></div>
+    </div>
+
+    <div class="footer-section">
+      <h4>Quick Links</h4>
+      <ul class="footer-links">
+        <li><a href={getHomeUrl()}>Home</a></li>
+        <li><a href={withBase('description')}>Description</a></li>
+        <li><a href={withBase('team')}>Team</a></li>
+        <li><a href={withBase('human-practices')}>Human Practices</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-section">
+      <h4>Resources</h4>
+      <ul class="footer-links">
+        <li><a href="https://igem.org" target="_blank" rel="noopener">iGEM Official</a></li>
+        <li><a href="https://gitlab.igem.org/2026/3rd-team" target="_blank" rel="noopener">GitLab Repository</a></li>
+        <li><a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener">CC BY 4.0 License</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-section footer-social">
+      <h4>Connect</h4>
+      <div class="social-links">
+        <button type="button" title="WeChat - 敬请期待" class="social-icon placeholder" data-social="wechat" aria-label="WeChat - 敬请期待">
+          <span>📱</span>
+        </button>
+        <a href="mailto:contact@soilsyn.org" title="Email us" class="social-icon" data-social="email">
+          <span>📧</span>
+        </a>
+        <button type="button" title="LinkedIn - 敬请期待" class="social-icon placeholder" data-social="linkedin" aria-label="LinkedIn - 敬请期待">
+          <span>💼</span>
+        </button>
+        <button type="button" title="X (Twitter) - 敬请期待" class="social-icon placeholder" data-social="twitter" aria-label="X (Twitter) - 敬请期待">
+          <span>𝕏</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <p class="footer-copyright">
+      &copy; 2026 iGEM Soil Microbiome Team. Licensed under
+      <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener">CC BY 4.0</a>
+    </p>
+    <div class="footer-badges">
+      <span class="footer-badge">Synthetic Biology</span>
+      <span class="footer-badge">Sustainable Agriculture</span>
+      <span class="footer-badge">Microbial Engineering</span>
+    </div>
+  </div>
+</footer>
+
+<script type="module" src={footerRuntimeUrl}></script>

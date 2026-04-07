@@ -1,0 +1,34 @@
+<svg width="1920" height="1080" viewBox="0 0 1920 1080" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <filter id="drop-shadow-soft" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="5" dy="8" stdDeviation="10" flood-color="rgba(20, 50, 35, 1)" flood-opacity="0.1"/>
+    </filter>
+    <filter id="drop-shadow-hard" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="8" dy="12" stdDeviation="15" flood-color="rgba(13, 36, 25, 1)" flood-opacity="0.15"/>
+    </filter>
+    <linearGradient id="wave-mid" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#4db7a5"/>
+      <stop offset="100%" stop-color="#67c9b6"/>
+    </linearGradient>
+    <linearGradient id="wave-front" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#b6ebe2"/>
+      <stop offset="100%" stop-color="#90d5c9"/>
+    </linearGradient>
+  </defs>
+
+  <rect x="-100" y="-120" width="2120" height="1320" fill="#A9DFD8"/>
+
+  <g>
+    <path d="M-100,1080 C40,840 320,1135 620,980 S1070,740 1360,870 S1760,1080 2020,980 V1100 H-100 Z" fill="#A9DFD8" opacity="1"/>
+  </g>
+  <g>
+    <path d="M-100,1080 C120,820 360,1120 680,972 S1110,735 1410,865 S1800,1088 2020,988 V1100 H-100 Z" fill="url(#wave-mid)" opacity="0.98" stroke="#53c2af" stroke-opacity="0.48" stroke-width="2"/>
+  </g>
+  <g>
+    <path d="M-100,1080 C210,860 450,1095 760,985 S1180,760 1490,875 S1880,1090 2020,996 V1100 H-100 Z" fill="url(#wave-front)" opacity="0.95" stroke="#d9fff8" stroke-opacity="0.38" stroke-width="2"/>
+  </g>
+
+  <g>
+    <path d="M1200,400 C1100,300 1350,200 1500,350 C1650,500 1450,650 1300,600 C1150,550 1300,500 1200,400 Z" fill="#9fd2c6" filter="url(#drop-shadow-hard)" opacity="0.54"/>
+  </g>
+</svg>

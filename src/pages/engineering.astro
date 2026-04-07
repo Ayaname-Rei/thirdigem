@@ -1,0 +1,12 @@
+---
+import StandardCompatPage from '../components/pages/StandardCompatPage.astro';
+import { withBase } from '../utils/baseUrl';
+---
+
+<StandardCompatPage pageTitle="Engineering" heading="Engineering">
+  This standard URL page is provided for iGEM judging compatibility.
+  Engineering-related implementation is currently linked through
+  <a href={withBase('experiments')}>Experiments</a>,
+  <a href={withBase('hardware')}>Hardware</a>, and
+  <a href={withBase('model')}>Model</a>.
+</StandardCompatPage>

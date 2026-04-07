@@ -1,0 +1,10 @@
+---
+import StandardCompatPage from '../components/pages/StandardCompatPage.astro';
+import { withBase } from '../utils/baseUrl';
+---
+
+<StandardCompatPage pageTitle="Safety" heading="Safety">
+  This standard URL page is provided for iGEM judging compatibility.
+  Safety-related records are currently linked from
+  <a href={withBase('human-practices')}>Human Practices</a>.
+</StandardCompatPage>

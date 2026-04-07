@@ -1,0 +1,32 @@
+stages:
+  - build
+  - deploy
+
+cache:
+  paths:
+    - node_modules/
+    - .npm
+
+build:
+  stage: build
+  image: node:20
+  script:
+    - npm ci
+    - npm run build
+    - npm run prepare:cdn
+  artifacts:
+    paths:
+      - dist/
+    expire_in: 1 week
+
+deploy:
+  stage: deploy
+  image: python:3.12
+  dependencies:
+    - build
+  script:
+    - pip install --upgrade pip
+    - pip install -r requirements.txt
+    - python scripts/igem-upload.py
+  only:
+    - main

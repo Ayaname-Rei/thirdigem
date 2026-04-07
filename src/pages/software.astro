@@ -1,0 +1,10 @@
+---
+import StandardCompatPage from '../components/pages/StandardCompatPage.astro';
+import { withBase } from '../utils/baseUrl';
+---
+
+<StandardCompatPage pageTitle="Software" heading="Software">
+  This standard URL page is provided for iGEM judging compatibility.
+  Software-related materials are currently linked through
+  <a href={withBase('description')}>Description</a>.
+</StandardCompatPage>

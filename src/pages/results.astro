@@ -1,0 +1,11 @@
+---
+import StandardCompatPage from '../components/pages/StandardCompatPage.astro';
+import { withBase } from '../utils/baseUrl';
+---
+
+<StandardCompatPage pageTitle="Results" heading="Results">
+  This standard URL page is provided for iGEM judging compatibility.
+  Current results-related content can be accessed from
+  <a href={withBase('description')}>Description</a> and
+  <a href={withBase('awards')}>Awards</a>.
+</StandardCompatPage>

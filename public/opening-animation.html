@@ -2,1393 +2,618 @@
 <html lang="zh-CN">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
     <title>iGEM Opening Animation</title>
-
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&display=swap"
-      rel="stylesheet"
-    />
-
     <style>
       :root {
-        --paper: #ffffff;
-
-        --line-color: rgba(171, 154, 138, 0.96);
-        --line-glow: rgba(196, 179, 163, 0.22);
-
-        --soil-dark: #9e7f67;
-        --soil-mid: #b89881;
-        --soil-light: #ded0c3;
-
-        --root-main: rgba(113, 98, 87, 0.92);
-        --root-soft: rgba(136, 118, 105, 0.72);
-
-        --tree-trunk-main: rgba(101, 81, 66, 0.94);
-        --tree-trunk-soft: rgba(126, 104, 88, 0.78);
-        --tree-leaf-main: rgba(114, 151, 96, 0.9);
-        --tree-leaf-soft: rgba(148, 180, 130, 0.76);
-
-        --igem-color: rgba(118, 104, 92, 0.96);
-        --igem-caret: rgba(147, 133, 121, 0.86);
+        --bg0: #0a1b28;
+        --bg1: #102535;
+        --bg2: #173142;
       }
 
-      *,
-      *::before,
-      *::after {
+      *, *::before, *::after {
         box-sizing: border-box;
         margin: 0;
         padding: 0;
       }
 
-      html,
-      body {
+      html, body {
         width: 100%;
         height: 100%;
         overflow: hidden;
-        background: #ffffff;
+        background: linear-gradient(160deg, var(--bg0) 0%, var(--bg1) 52%, var(--bg2) 100%);
       }
 
-      #home {
-        position: relative;
-        min-height: 100vh;
-        background: #ffffff;
-      }
-
-      #intro {
+      #stage {
         position: fixed;
         inset: 0;
-        z-index: 50;
-        overflow: hidden;
-        background: #ffffff;
         isolation: isolate;
-        will-change: transform;
-      }
-
-      #intro.slide-up {
-        transform: translateY(-100%);
-        transition: transform 950ms cubic-bezier(0.2, 0.74, 0.16, 1);
-      }
-
-      #horizon {
-        position: absolute;
-        left: 24px;
-        width: calc(100vw - 48px);
-        height: 2px;
-        transform: scaleX(0.001);
-        transform-origin: center;
-        opacity: 1;
-        z-index: 6;
-        background: linear-gradient(
-          90deg,
-          rgba(171, 154, 138, 0) 0%,
-          rgba(171, 154, 138, 0.92) 12%,
-          rgba(171, 154, 138, 0.98) 50%,
-          rgba(171, 154, 138, 0.92) 88%,
-          rgba(171, 154, 138, 0) 100%
-        );
-        box-shadow:
-          0 0 8px var(--line-glow),
-          0 1px 0 rgba(255, 255, 255, 0.4);
-        filter: blur(0.15px);
-      }
-
-      #droplet {
-        position: absolute;
-        left: 0;
-        top: 0;
-        width: 50px;
-        height: 76px;
-        opacity: 0;
-        z-index: 8;
-        transform-origin: 50% 88%;
-        pointer-events: none;
-        will-change: transform, opacity;
-      }
-
-      #droplet svg {
-        display: block;
-        width: 100%;
-        height: 100%;
-        overflow: visible;
-      }
-
-      #impactFlash,
-      #impactRing,
-      #impactSplash {
-        position: absolute;
-        left: 50%;
-        top: 50%;
-        pointer-events: none;
-        opacity: 0;
-        z-index: 9;
-      }
-
-      #impactFlash {
-        width: 74px;
-        height: 74px;
-        background: radial-gradient(
-          circle,
-          rgba(88, 182, 255, 0.4) 0%,
-          rgba(88, 182, 255, 0.14) 46%,
-          transparent 76%
-        );
-        transform: translate(-50%, -50%) scale(0.2);
-        filter: blur(1.6px);
-      }
-
-      #impactRing {
-        width: 128px;
-        height: 18px;
-        border: 1.5px solid rgba(39, 142, 228, 0.62);
-        border-radius: 50%;
-        transform: translate(-50%, -50%) scale(0.24);
-        filter: blur(0.2px);
-      }
-
-      #impactSplash {
-        width: 108px;
-        height: 54px;
-        transform: translate(-50%, -50%) scale(0.2);
-        transform-origin: 50% 50%;
-      }
-
-      #soil {
-        position: absolute;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        overflow: hidden;
-        opacity: 0;
-        transform: scaleY(0);
-        transform-origin: center top;
-        z-index: 2;
         background:
-          radial-gradient(
-            circle at 16% 22%,
-            rgba(107, 86, 71, 0.14) 0 2px,
-            transparent 3px
-          ),
-          radial-gradient(
-            circle at 24% 50%,
-            rgba(111, 90, 74, 0.13) 0 1.8px,
-            transparent 2.6px
-          ),
-          radial-gradient(
-            circle at 72% 34%,
-            rgba(101, 80, 67, 0.14) 0 2px,
-            transparent 3px
-          ),
-          radial-gradient(
-            circle at 66% 71%,
-            rgba(96, 77, 63, 0.13) 0 2px,
-            transparent 3px
-          ),
-          linear-gradient(
-            180deg,
-            var(--soil-light) 0%,
-            var(--soil-mid) 56%,
-            var(--soil-dark) 100%
-          );
+          radial-gradient(circle at 18% 15%, rgba(47, 155, 228, 0.16), transparent 36%),
+          radial-gradient(circle at 82% 18%, rgba(79, 192, 92, 0.14), transparent 38%),
+          radial-gradient(circle at 50% 88%, rgba(255, 179, 0, 0.08), transparent 42%),
+          linear-gradient(160deg, #0a1b28 0%, #102535 52%, #173142 100%);
       }
 
-      #soil::before {
-        content: "";
-        position: absolute;
-        inset: 0;
-        background:
-          radial-gradient(
-            circle at 22% 18%,
-            rgba(255, 255, 255, 0.1) 0%,
-            transparent 28%
-          ),
-          radial-gradient(
-            circle at 78% 30%,
-            rgba(255, 255, 255, 0.07) 0%,
-            transparent 26%
-          ),
-          radial-gradient(
-            circle at 50% 72%,
-            rgba(0, 0, 0, 0.06) 0%,
-            transparent 34%
-          ),
-          linear-gradient(
-            180deg,
-            rgba(255, 255, 255, 0.18) 0%,
-            rgba(255, 255, 255, 0.05) 22%,
-            transparent 52%,
-            rgba(0, 0, 0, 0.08) 100%
-          );
-        opacity: 0.9;
-        mix-blend-mode: multiply;
+      #stage.exiting {
+        animation: stage-out 720ms cubic-bezier(0.25, 0.08, 0.22, 1) forwards;
       }
 
-      #treeSvg {
-        position: absolute;
-        inset: 0;
-        width: 100%;
-        height: 100%;
-        overflow: visible;
-        z-index: 7;
-        pointer-events: none;
-      }
-
-      #rootsSvg {
-        position: absolute;
-        inset: 0;
-        width: 100%;
-        height: 100%;
-        overflow: visible;
-        z-index: 5;
-        pointer-events: none;
-      }
-
-      .root {
-        fill: none;
-        stroke-linecap: round;
-        stroke-linejoin: round;
-        opacity: 0;
-        filter: drop-shadow(0 0 1px rgba(255, 255, 255, 0.14));
-      }
-
-      .root.main {
-        stroke: var(--root-main);
-      }
-
-      .root.branch {
-        stroke: var(--root-soft);
-      }
-
-      .tree-part {
-        fill: none;
-        stroke-linecap: round;
-        stroke-linejoin: round;
-        opacity: 0;
-        filter: drop-shadow(0 0 1px rgba(255, 255, 255, 0.14));
-      }
-
-      .tree-part.main {
-        stroke: var(--tree-trunk-main);
-      }
-
-      .tree-part.branch {
-        stroke: var(--tree-trunk-soft);
-      }
-
-      .tree-leaf {
-        opacity: 0;
-        transform-origin: center;
-        stroke: rgba(96, 128, 82, 0.42);
-        stroke-width: 0.9;
-        filter: drop-shadow(0 2px 3px rgba(110, 140, 100, 0.18));
-      }
-
-      #igemWord {
-        position: absolute;
-        left: 50%;
-        transform: translateX(-50%);
-        z-index: 12;
-        opacity: 0;
-        display: inline-flex;
-        align-items: flex-end;
-        white-space: nowrap;
-        font-family: "Playfair Display", "Georgia", "Times New Roman", serif;
-        font-weight: 500;
-        font-style: italic;
-        font-size: clamp(48px, 7.2vw, 92px);
-        line-height: 1;
-        letter-spacing: 0.04em;
-        color: var(--igem-color);
-        text-shadow:
-          0 1px 0 rgba(255, 255, 255, 0.72),
-          0 5px 12px rgba(170, 154, 143, 0.1);
-        will-change: opacity;
-      }
-
-      #igemWord.show {
-        opacity: 1;
-        transition: opacity 220ms ease;
-      }
-
-      #igemMask {
-        display: inline-block;
-        width: 0;
-        overflow: hidden;
-        white-space: nowrap;
-        vertical-align: bottom;
-      }
-
-      #igemText {
-        display: inline-block;
-        white-space: nowrap;
-      }
-
-      #igemCaret {
-        display: inline-block;
-        width: 2px;
-        height: 0.86em;
-        margin-left: 5px;
-        vertical-align: -0.06em;
-        background: var(--igem-caret);
-        opacity: 0;
-      }
-
-      #igemWord.typing #igemCaret {
-        opacity: 1;
-        animation: blinkCaret 0.72s step-end infinite;
-      }
-
-      @keyframes blinkCaret {
-        0%,
-        48% {
+      @keyframes stage-out {
+        0% {
           opacity: 1;
+          transform: scale(1);
+          filter: blur(0px) brightness(1);
         }
-        49%,
         100% {
           opacity: 0;
+          transform: scale(1.02);
+          filter: blur(1.5px) brightness(1.04);
         }
       }
+
+      canvas {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+      }
+
+      #cvBg { z-index: 1; }
+      #cvFx { z-index: 2; }
+
     </style>
   </head>
   <body>
-    <main id="home"></main>
-
-    <div id="intro">
-      <div id="soil">
-        <svg id="rootsSvg" xmlns="http://www.w3.org/2000/svg"></svg>
-      </div>
-
-      <svg id="treeSvg" xmlns="http://www.w3.org/2000/svg"></svg>
-
-      <div id="horizon"></div>
-
-      <div id="igemWord" aria-hidden="true">
-        <span id="igemMask">
-          <span id="igemText">iGEM</span>
-        </span>
-        <span id="igemCaret"></span>
-      </div>
-
-      <div id="droplet" aria-hidden="true">
-        <svg
-          id="dropSvg"
-          viewBox="0 0 64 96"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <defs>
-            <filter
-              id="softPencil"
-              x="-20%"
-              y="-20%"
-              width="140%"
-              height="140%"
-            >
-              <feTurbulence
-                type="fractalNoise"
-                baseFrequency="0.72"
-                numOctaves="2"
-                seed="4"
-                result="noise"
-              />
-              <feDisplacementMap
-                in="SourceGraphic"
-                in2="noise"
-                scale="1.05"
-                xChannelSelector="R"
-                yChannelSelector="G"
-              />
-            </filter>
-
-            <filter
-              id="edgePencil"
-              x="-15%"
-              y="-15%"
-              width="130%"
-              height="130%"
-            >
-              <feTurbulence
-                type="fractalNoise"
-                baseFrequency="0.95"
-                numOctaves="2"
-                seed="9"
-                result="noise"
-              />
-              <feDisplacementMap
-                in="SourceGraphic"
-                in2="noise"
-                scale="1.35"
-                xChannelSelector="R"
-                yChannelSelector="G"
-              />
-            </filter>
-
-            <linearGradient id="dropFill" x1="22%" y1="8%" x2="78%" y2="94%">
-              <stop offset="0%" stop-color="#f2fbff" />
-              <stop offset="18%" stop-color="#d1f0ff" />
-              <stop offset="44%" stop-color="#82d2ff" />
-              <stop offset="72%" stop-color="#2fa9f5" />
-              <stop offset="100%" stop-color="#0f79d8" />
-            </linearGradient>
-
-            <radialGradient id="dropShade" cx="72%" cy="78%" r="44%">
-              <stop offset="0%" stop-color="rgba(13,110,205,0.38)" />
-              <stop offset="100%" stop-color="rgba(13,110,205,0)" />
-            </radialGradient>
-
-            <pattern
-              id="dropHatch"
-              patternUnits="userSpaceOnUse"
-              width="4"
-              height="4"
-              patternTransform="rotate(28)"
-            >
-              <line
-                x1="0"
-                y1="0"
-                x2="0"
-                y2="4"
-                stroke="rgba(8,120,220,0.14)"
-                stroke-width="1"
-              />
-            </pattern>
-
-            <pattern
-              id="dropHatch2"
-              patternUnits="userSpaceOnUse"
-              width="5"
-              height="5"
-              patternTransform="rotate(-18)"
-            >
-              <line
-                x1="0"
-                y1="0"
-                x2="0"
-                y2="5"
-                stroke="rgba(255,255,255,0.11)"
-                stroke-width="1"
-              />
-            </pattern>
-          </defs>
-
-          <path
-            id="dGhost"
-            d="M32 4 C39 15,46 27,52 45 C56 61,53 78,43 88 C39 92,35 94,32 94 C29 94,25 92,21 88 C11 78,8 61,12 45 C18 27,25 15,32 4 Z"
-            fill="none"
-            stroke="rgba(31,153,242,0.24)"
-            stroke-width="1.2"
-            stroke-linecap="round"
-            stroke-dasharray="2 5"
-            filter="url(#edgePencil)"
-          />
-
-          <path
-            id="dOutline2"
-            d="M32 4 C39 15,46 27,52 45 C56 61,53 78,43 88 C39 92,35 94,32 94 C29 94,25 92,21 88 C11 78,8 61,12 45 C18 27,25 15,32 4 Z"
-            fill="none"
-            stroke="rgba(8,125,219,0.42)"
-            stroke-width="4.2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            filter="url(#edgePencil)"
-          />
-
-          <path
-            id="dBody"
-            d="M32 4 C39 15,46 27,52 45 C56 61,53 78,43 88 C39 92,35 94,32 94 C29 94,25 92,21 88 C11 78,8 61,12 45 C18 27,25 15,32 4 Z"
-            fill="url(#dropFill)"
-            stroke="none"
-            filter="url(#softPencil)"
-          />
-
-          <path
-            id="dShadePath"
-            d="M32 4 C39 15,46 27,52 45 C56 61,53 78,43 88 C39 92,35 94,32 94 C29 94,25 92,21 88 C11 78,8 61,12 45 C18 27,25 15,32 4 Z"
-            fill="url(#dropShade)"
-            opacity="0.68"
-          />
-
-          <path
-            id="dHatch"
-            d="M32 4 C39 15,46 27,52 45 C56 61,53 78,43 88 C39 92,35 94,32 94 C29 94,25 92,21 88 C11 78,8 61,12 45 C18 27,25 15,32 4 Z"
-            fill="url(#dropHatch)"
-            opacity="0.78"
-          />
-
-          <path
-            id="dHatch2"
-            d="M32 4 C39 15,46 27,52 45 C56 61,53 78,43 88 C39 92,35 94,32 94 C29 94,25 92,21 88 C11 78,8 61,12 45 C18 27,25 15,32 4 Z"
-            fill="url(#dropHatch2)"
-            opacity="0.5"
-          />
-
-          <path
-            id="dOutline"
-            d="M32 4 C39 15,46 27,52 45 C56 61,53 78,43 88 C39 92,35 94,32 94 C29 94,25 92,21 88 C11 78,8 61,12 45 C18 27,25 15,32 4 Z"
-            fill="none"
-            stroke="#0b8ae8"
-            stroke-width="2.35"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            filter="url(#edgePencil)"
-          />
-
-          <path
-            d="M22 23 C19 32,18 41,20 50"
-            fill="none"
-            stroke="rgba(255,255,255,0.76)"
-            stroke-width="4"
-            stroke-linecap="round"
-            filter="url(#softPencil)"
-          />
-          <path
-            d="M23 24 C21 32,20 40,21.8 48"
-            fill="none"
-            stroke="rgba(255,255,255,0.48)"
-            stroke-width="2.2"
-            stroke-linecap="round"
-          />
-          <path
-            d="M29 13 C27 17,26 21,27 25"
-            fill="none"
-            stroke="rgba(255,255,255,0.54)"
-            stroke-width="2.6"
-            stroke-linecap="round"
-            filter="url(#softPencil)"
-          />
-          <path
-            d="M19 79 C24 87,30 90,38 89 C43 88,46 86,49 82"
-            fill="none"
-            stroke="rgba(165,214,255,0.60)"
-            stroke-width="2.5"
-            stroke-linecap="round"
-            filter="url(#softPencil)"
-          />
-          <path
-            d="M43 40 C45 50,44 63,40 75"
-            fill="none"
-            stroke="rgba(8,95,187,0.24)"
-            stroke-width="3.1"
-            stroke-linecap="round"
-            filter="url(#softPencil)"
-          />
-        </svg>
-      </div>
-
-      <div id="impactFlash"></div>
-      <div id="impactRing"></div>
-
-      <svg
-        id="impactSplash"
-        viewBox="0 0 120 60"
-        xmlns="http://www.w3.org/2000/svg"
-        aria-hidden="true"
-      >
-        <path
-          d="M8 48 C20 46,24 34,32 36 C38 37,39 46,44 46 C49 46,50 31,60 26 C70 31,71 46,76 46 C81 46,82 37,88 36 C96 34,100 46,112 48"
-          fill="none"
-          stroke="rgba(25, 145, 234, 0.90)"
-          stroke-width="2.1"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-        />
-      </svg>
+    <div id="stage">
+      <canvas id="cvBg"></canvas>
+      <canvas id="cvFx"></canvas>
     </div>
 
     <script>
       (() => {
-        const intro = document.getElementById("intro");
-        const horizon = document.getElementById("horizon");
-        const droplet = document.getElementById("droplet");
-        const impactFlash = document.getElementById("impactFlash");
-        const impactRing = document.getElementById("impactRing");
-        const impactSplash = document.getElementById("impactSplash");
-        const soil = document.getElementById("soil");
-        const rootsSvg = document.getElementById("rootsSvg");
-        const treeSvg = document.getElementById("treeSvg");
+        'use strict';
 
-        const igemWord = document.getElementById("igemWord");
-        const igemMask = document.getElementById("igemMask");
-        const igemText = document.getElementById("igemText");
-        const igemCaret = document.getElementById("igemCaret");
+        const TIMING = {
+          intro: 460,
+          hold: 2000,
+          move: 1100,
+          settle: 800,
+          dissolve: 1000,
+          exit: 720,
+        };
 
-        const HORIZON_MS = 150;
-        const DROP_MS = 600;
-        const IMPACT_MS = 240;
+        const AT = {};
+        AT.intro = 0;
+        AT.hold = AT.intro + TIMING.intro;
+        AT.move = AT.hold + TIMING.hold;
+        AT.settle = AT.move + TIMING.move;
+        AT.dissolve = AT.settle + TIMING.settle;
+        AT.exit = AT.dissolve + TIMING.dissolve;
 
-        const SOIL_MS = 1500;
-        const TYPE_MS = 760;
-        const EXIT_MS = 950;
+        const stage = document.getElementById('stage');
 
-        let layout = null;
-        let rootPaths = [];
-        let treePaths = [];
-        let treeLeaves = [];
-        let rafId = null;
-        let typeRafId = null;
-        let timers = [];
+        const cvBg = document.getElementById('cvBg');
+        const cvFx = document.getElementById('cvFx');
+        let ctxBg = null;
+        let ctxFx = null;
+
+        let W = 0;
+        let H = 0;
+        let DPR = 1;
+
+        let raf = 0;
+        let start = 0;
+        let prev = 0;
+        let done = false;
+
+        const logo = { img: null, ready: false, size: 0 };
+        const particles = [];
 
         const clamp = (v, mn, mx) => Math.min(mx, Math.max(mn, v));
-        const easeOutCubic = (t) => 1 - Math.pow(1 - t, 3);
-        const easeInCubic = (t) => t * t * t;
-        const easeInOutSine = (t) => -(Math.cos(Math.PI * t) - 1) / 2;
         const lerp = (a, b, t) => a + (b - a) * t;
+        const easeOut = (t) => 1 - Math.pow(1 - t, 3);
+        const easeInOut = (t) => (t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2);
+        const rand = (a, b) => a + Math.random() * (b - a);
 
-        function setLayout() {
-          const W = window.innerWidth;
-          const H = window.innerHeight;
-          const horizonY = Math.round(H * 0.4);
-          const soilHeight = H - horizonY;
-          const centerX = W / 2;
+        function loadLogo() {
+          if (logo.img) return;
+          const img = new Image();
+          img.decoding = 'async';
+          img.onload = () => {
+            logo.ready = true;
+            logo.img = img;
+          };
+          img.src = new URL('brand-mark.svg', window.location.href).toString();
+          logo.img = img;
+        }
 
-          const originalStartY = horizonY - Math.min(150, H * 0.18);
-          const apexY = originalStartY - Math.min(78, H * 0.1);
-          const apexX = centerX + Math.min(76, W * 0.085);
+        function getStartPos() {
+          return { x: W * 0.5, y: H * 0.5 };
+        }
 
-          layout = {
-            W,
-            H,
-            horizonY,
-            soilHeight,
-            centerX,
-            startY: originalStartY,
-            apexX,
-            apexY,
-            endX: centerX,
-            endY: horizonY - 10,
+        function getFusionSpec() {
+          const fallback = {
+            x: W < 900 ? W * 0.5 : Math.max(102, Math.min(230, W * 0.16)),
+            y: W < 900 ? 78 : 66,
+            size: W < 900 ? 110 : 128,
           };
 
-          horizon.style.top = `${horizonY}px`;
-          soil.style.top = `${horizonY}px`;
-          soil.style.height = `${soilHeight}px`;
-          impactFlash.style.top = `${horizonY + 1}px`;
-          impactRing.style.top = `${horizonY + 2}px`;
-          impactSplash.style.left = `${centerX}px`;
-          impactSplash.style.top = `${horizonY + 1}px`;
-          igemWord.style.top = `${horizonY - Math.min(96, H * 0.12)}px`;
+          try {
+            const doc = window.parent?.document;
+            if (!doc) return fallback;
 
-          buildRoots(W, soilHeight);
-          buildTree(W, H, horizonY, centerX);
+            const target =
+              doc.querySelector('.logo-icon img') ||
+              doc.querySelector('.logo-icon svg') ||
+              doc.querySelector('.logo-icon');
+            if (!target) return fallback;
+
+            const rect = target.getBoundingClientRect();
+            if (!rect || !(rect.width > 0) || !(rect.height > 0)) return fallback;
+
+            return {
+              x: rect.left + rect.width * 0.5,
+              y: rect.top + rect.height * 0.5,
+              size: Math.max(56, Math.min(180, Math.min(rect.width, rect.height) * 1.04)),
+            };
+          } catch {
+            return fallback;
+          }
         }
 
-        function getPoint(t) {
-          const { apexX, apexY, endX, endY } = layout;
-          const p = easeInCubic(clamp(t, 0, 1));
-          return {
-            x: lerp(apexX, endX, p),
-            y: lerp(apexY, endY, p),
+        function resize() {
+          DPR = Math.min(window.devicePixelRatio || 1, 2);
+          W = window.innerWidth;
+          H = window.innerHeight;
+
+          [cvBg, cvFx].forEach((cv) => {
+            cv.width = W * DPR;
+            cv.height = H * DPR;
+            cv.style.width = `${W}px`;
+            cv.style.height = `${H}px`;
+          });
+
+          ctxBg = cvBg.getContext('2d');
+          ctxFx = cvFx.getContext('2d');
+          ctxBg.setTransform(DPR, 0, 0, DPR, 0, 0);
+          ctxFx.setTransform(DPR, 0, 0, DPR, 0, 0);
+
+          logo.size = W < 900 ? 132 : 168;
+          rebuildParticles();
+        }
+
+        function rebuildParticles() {
+          particles.length = 0;
+          const count = Math.min(120, Math.max(58, Math.floor((W * H) / 18000)));
+          const c = getStartPos();
+          for (let i = 0; i < count; i++) {
+            const a = rand(0, Math.PI * 2);
+            const r = rand(28, 170);
+            const x = c.x + Math.cos(a) * r;
+            const y = c.y + Math.sin(a) * r;
+            particles.push({
+              x,
+              y,
+              r: rand(0.9, 2.1),
+              a,
+              orbit: r,
+              speed: rand(0.0005, 0.0014),
+              twinkle: rand(0, Math.PI * 2),
+              trail: Array.from({ length: 4 }, () => ({ x, y })),
+            });
+          }
+        }
+
+        function drawBackground(t) {
+          const c = ctxBg;
+          c.clearRect(0, 0, W, H);
+
+          const g = c.createLinearGradient(0, 0, 0, H);
+          g.addColorStop(0, '#0a1b28');
+          g.addColorStop(0.52, '#102535');
+          g.addColorStop(1, '#173142');
+          c.fillStyle = g;
+          c.fillRect(0, 0, W, H);
+
+          const driftA = Math.sin(t * 0.00022);
+          const driftB = Math.cos(t * 0.00018);
+          const driftC = Math.sin(t * 0.00027 + 1.2);
+
+          const glow1 = c.createRadialGradient(
+            W * (0.24 + driftA * 0.03),
+            H * (0.28 + driftB * 0.02),
+            0,
+            W * (0.24 + driftA * 0.03),
+            H * (0.28 + driftB * 0.02),
+            Math.min(W, H) * 0.48,
+          );
+          glow1.addColorStop(0, 'rgba(80, 190, 255, 0.14)');
+          glow1.addColorStop(1, 'rgba(80,190,255,0)');
+          c.fillStyle = glow1;
+          c.fillRect(0, 0, W, H);
+
+          const glow2 = c.createRadialGradient(
+            W * (0.78 + driftB * 0.028),
+            H * (0.24 + driftC * 0.02),
+            0,
+            W * (0.78 + driftB * 0.028),
+            H * (0.24 + driftC * 0.02),
+            Math.min(W, H) * 0.42,
+          );
+          glow2.addColorStop(0, 'rgba(88, 216, 125, 0.12)');
+          glow2.addColorStop(1, 'rgba(88,216,125,0)');
+          c.fillStyle = glow2;
+          c.fillRect(0, 0, W, H);
+
+          const fogBands = 4;
+          for (let i = 0; i < fogBands; i++) {
+            const yBase = H * (0.2 + i * 0.18);
+            const sway = Math.sin(t * 0.0007 + i * 1.13) * 16;
+            c.strokeStyle = `rgba(138, 210, 230, ${0.035 - i * 0.006})`;
+            c.lineWidth = 22 - i * 4;
+            c.beginPath();
+            for (let x = -24; x <= W + 24; x += 20) {
+              const y = yBase + Math.sin(x * 0.006 + t * 0.0009 + i * 0.7) * (7 + i * 1.5) + sway;
+              if (x === -24) c.moveTo(x, y);
+              else c.lineTo(x, y);
+            }
+            c.stroke();
+          }
+
+          c.strokeStyle = 'rgba(127, 190, 220, 0.06)';
+          c.lineWidth = 1;
+          const grid = 64;
+          const ox = ((t * 0.01) % grid);
+          for (let x = -grid; x < W + grid; x += grid) {
+            c.beginPath();
+            c.moveTo(x + ox, 0);
+            c.lineTo(x + ox, H);
+            c.stroke();
+          }
+
+          const vignette = c.createRadialGradient(W * 0.5, H * 0.48, Math.min(W, H) * 0.25, W * 0.5, H * 0.48, Math.max(W, H) * 0.78);
+          vignette.addColorStop(0, 'rgba(0,0,0,0)');
+          vignette.addColorStop(1, 'rgba(0,0,0,0.34)');
+          c.fillStyle = vignette;
+          c.fillRect(0, 0, W, H);
+        }
+
+        function drawLogoAndFx(t, dt) {
+          const c = ctxFx;
+          c.clearRect(0, 0, W, H);
+
+          const introP = clamp((t - AT.intro) / TIMING.intro, 0, 1);
+          const moveP = clamp((t - AT.move) / TIMING.move, 0, 1);
+          const settleP = clamp((t - AT.settle) / TIMING.settle, 0, 1);
+          const dissolveP = clamp((t - AT.dissolve) / TIMING.dissolve, 0, 1);
+
+          const from = getStartPos();
+          const fusion = getFusionSpec();
+          const k = easeInOut(moveP);
+
+          const lx = lerp(from.x, fusion.x, k);
+          const ly = lerp(from.y, fusion.y, k);
+          const fusedOversize = fusion.size * 1.26;
+          const moveSize = lerp(logo.size, fusedOversize, k);
+          const settleSize = lerp(moveSize, fusion.size * 1.08, easeOut(settleP));
+          const ls = lerp(settleSize, fusion.size * 0.88, easeInOut(dissolveP));
+          const fxFade = 1 - dissolveP * 0.88;
+
+          const pulse = 1 + Math.sin(t * 0.006) * 0.03 * (1 - moveP * 0.7);
+          const auraR = ls * (0.7 + introP * 0.5);
+          const spin = t * 0.0012;
+          const revealP = clamp((introP - 0.2) / 0.8, 0, 1);
+
+          const aura = c.createRadialGradient(lx, ly, 0, lx, ly, auraR * 1.35);
+          aura.addColorStop(0, `rgba(83, 200, 255, ${(0.24 + introP * 0.1) * fxFade})`);
+          aura.addColorStop(0.52, `rgba(86, 216, 124, ${(0.18 + introP * 0.06) * fxFade})`);
+          aura.addColorStop(1, 'rgba(86,216,124,0)');
+          c.fillStyle = aura;
+          c.beginPath();
+          c.arc(lx, ly, auraR * 1.35, 0, Math.PI * 2);
+          c.fill();
+
+          for (let i = 0; i < 3; i++) {
+            const rp = ((t * 0.0012 + i * 0.33) % 1);
+            const rr = ls * (0.64 + rp * 0.7);
+            c.strokeStyle = `rgba(120, 225, 255, ${0.28 * (1 - rp) * fxFade})`;
+            c.lineWidth = 1.5 - rp * 0.5;
+            c.beginPath();
+            c.arc(lx, ly, rr, 0, Math.PI * 2);
+            c.stroke();
+          }
+
+          // Segmented HUD rings for richer motion detail
+          for (let ring = 0; ring < 2; ring++) {
+            const baseR = ls * (0.92 + ring * 0.18);
+            const segCount = ring === 0 ? 10 : 14;
+            const gap = 0.11;
+            const ringRot = spin * (ring === 0 ? 1 : -0.7);
+            c.lineWidth = ring === 0 ? 1.6 : 1.1;
+
+            for (let s = 0; s < segCount; s++) {
+              const a0 = ringRot + (Math.PI * 2 * s) / segCount + gap;
+              const a1 = ringRot + (Math.PI * 2 * (s + 1)) / segCount - gap * 1.4;
+              const alpha = (0.18 + 0.18 * Math.sin(t * 0.002 + s)) * fxFade * revealP;
+              c.strokeStyle = ring === 0
+                ? `rgba(122, 234, 255, ${alpha})`
+                : `rgba(120, 255, 191, ${alpha * 0.85})`;
+              c.beginPath();
+              c.arc(lx, ly, baseR, a0, a1);
+              c.stroke();
+            }
+          }
+
+          // Orbiting satellite sparks
+          for (let i = 0; i < 4; i++) {
+            const a = spin * (0.9 + i * 0.12) + i * (Math.PI * 0.5);
+            const r = ls * (1.12 + (i % 2) * 0.2);
+            const sx = lx + Math.cos(a) * r;
+            const sy = ly + Math.sin(a) * r * 0.82;
+            const satAlpha = (0.5 + 0.5 * Math.sin(t * 0.005 + i)) * 0.7 * fxFade * revealP;
+
+            c.strokeStyle = `rgba(134, 245, 255, ${satAlpha * 0.7})`;
+            c.lineWidth = 1;
+            c.beginPath();
+            c.moveTo(lx + Math.cos(a) * (r - 16), ly + Math.sin(a) * (r - 16) * 0.82);
+            c.lineTo(sx, sy);
+            c.stroke();
+
+            c.fillStyle = `rgba(202, 255, 246, ${satAlpha})`;
+            c.beginPath();
+            c.arc(sx, sy, 1.8 + (i % 2) * 0.6, 0, Math.PI * 2);
+            c.fill();
+          }
+
+          // Horizontal light sweep crossing the logo zone
+          const sweepX = lx - ls + (((t * 0.28) % (ls * 2.4)));
+          const beam = c.createLinearGradient(sweepX - 22, ly, sweepX + 22, ly);
+          beam.addColorStop(0, `rgba(120,230,255,0)`);
+          beam.addColorStop(0.5, `rgba(186,255,237,${0.22 * fxFade * revealP})`);
+          beam.addColorStop(1, `rgba(120,230,255,0)`);
+          c.fillStyle = beam;
+          c.fillRect(lx - ls * 0.62, ly - ls * 0.54, ls * 1.24, ls * 1.08);
+
+          // Peripheral outer effects (outside the logo body)
+          const outerR = ls * 1.75;
+          const outerR2 = ls * 2.15;
+
+          // Large orbit arcs around the subject
+          c.lineWidth = 1.2;
+          c.strokeStyle = `rgba(124, 222, 255, ${0.2 * fxFade * revealP})`;
+          c.beginPath();
+          c.ellipse(lx, ly, outerR2, outerR * 0.86, spin * 0.42, 0.2, Math.PI * 1.45);
+          c.stroke();
+
+          c.strokeStyle = `rgba(124, 255, 182, ${0.16 * fxFade * revealP})`;
+          c.beginPath();
+          c.ellipse(lx, ly, outerR * 0.94, outerR2 * 0.6, -spin * 0.36, Math.PI * 0.58, Math.PI * 1.86);
+          c.stroke();
+
+          // Peripheral nodes + links
+          const nodeCount = 7;
+          const nodes = [];
+          for (let i = 0; i < nodeCount; i++) {
+            const a = spin * (0.32 + i * 0.03) + (Math.PI * 2 * i) / nodeCount;
+            const nr = i % 2 === 0 ? outerR : outerR2 * 0.92;
+            const nx = lx + Math.cos(a) * nr;
+            const ny = ly + Math.sin(a) * nr * 0.78;
+            nodes.push({ x: nx, y: ny });
+
+            const na = (0.26 + 0.28 * Math.sin(t * 0.003 + i)) * fxFade * revealP;
+            c.fillStyle = `rgba(179, 247, 255, ${na})`;
+            c.beginPath();
+            c.arc(nx, ny, 1.6 + (i % 3) * 0.5, 0, Math.PI * 2);
+            c.fill();
+          }
+
+          c.lineWidth = 0.9;
+          for (let i = 0; i < nodes.length; i++) {
+            const a = nodes[i];
+            const b = nodes[(i + 2) % nodes.length];
+            const alpha = (0.08 + 0.06 * Math.sin(t * 0.002 + i * 0.9)) * fxFade * revealP;
+            c.strokeStyle = `rgba(117, 217, 255, ${alpha})`;
+            c.beginPath();
+            c.moveTo(a.x, a.y);
+            c.lineTo(b.x, b.y);
+            c.stroke();
+          }
+
+          // Small electric streaks in the outer field
+          for (let i = 0; i < 3; i++) {
+            const phase = (t * 0.0022 + i * 0.31) % 1;
+            const a = phase * Math.PI * 2 + i * 1.7;
+            const sr = outerR2 * (0.86 + i * 0.08);
+            const x1 = lx + Math.cos(a) * sr;
+            const y1 = ly + Math.sin(a) * sr * 0.76;
+            const x2 = lx + Math.cos(a + 0.08) * (sr + 18);
+            const y2 = ly + Math.sin(a + 0.08) * (sr + 18) * 0.76;
+            const x3 = lx + Math.cos(a + 0.16) * (sr + 6);
+            const y3 = ly + Math.sin(a + 0.16) * (sr + 6) * 0.76;
+            const ea = (0.18 + (1 - phase) * 0.22) * fxFade * revealP;
+
+            c.strokeStyle = `rgba(154, 255, 219, ${ea})`;
+            c.lineWidth = 1;
+            c.beginPath();
+            c.moveTo(x1, y1);
+            c.lineTo(x2, y2);
+            c.lineTo(x3, y3);
+            c.stroke();
+          }
+
+          // Left/right side feature clusters to enrich composition balance
+          const sideYOffset = Math.sin(t * 0.0016) * 10;
+          const sideDist = ls * 2.95;
+          const sideY = ly + sideYOffset;
+          const leftX = lx - sideDist;
+          const rightX = lx + sideDist;
+
+          const drawSideCluster = (sx, dir, tintA, tintB) => {
+            const coreA = (0.2 + 0.18 * Math.sin(t * 0.002 + sx * 0.003)) * fxFade * revealP;
+
+            // vertical beacon
+            c.strokeStyle = `rgba(${tintA}, ${coreA})`;
+            c.lineWidth = 1.5;
+            c.beginPath();
+            c.moveTo(sx, sideY - ls * 0.58);
+            c.lineTo(sx, sideY + ls * 0.58);
+            c.stroke();
+
+            // side arcs
+            c.strokeStyle = `rgba(${tintB}, ${coreA * 0.88})`;
+            c.lineWidth = 1.1;
+            c.beginPath();
+            c.ellipse(sx, sideY, ls * 0.34, ls * 0.56, dir * 0.32 + spin * 0.18, Math.PI * 0.24, Math.PI * 1.76);
+            c.stroke();
+
+            c.beginPath();
+            c.ellipse(sx + dir * ls * 0.11, sideY, ls * 0.18, ls * 0.36, -dir * 0.24 - spin * 0.24, Math.PI * 0.16, Math.PI * 1.84);
+            c.stroke();
+
+            // floating side nodes
+            for (let j = 0; j < 4; j++) {
+              const pa = t * 0.0014 + j * 1.15 + (dir > 0 ? 0.6 : 0);
+              const nx = sx + Math.cos(pa) * ls * (0.2 + j * 0.04) + dir * ls * 0.08;
+              const ny = sideY + Math.sin(pa * 1.22) * ls * (0.3 + j * 0.06);
+              const na = (0.18 + 0.24 * Math.sin(t * 0.003 + j)) * fxFade * revealP;
+
+              c.fillStyle = `rgba(${tintA}, ${na})`;
+              c.beginPath();
+              c.arc(nx, ny, 1.3 + j * 0.22, 0, Math.PI * 2);
+              c.fill();
+
+              c.strokeStyle = `rgba(${tintB}, ${na * 0.55})`;
+              c.lineWidth = 0.8;
+              c.beginPath();
+              c.moveTo(sx, sideY);
+              c.lineTo(nx, ny);
+              c.stroke();
+            }
           };
-        }
 
-        function getOpacityByY(y) {
-          const { apexY, startY } = layout;
-          return clamp((y - apexY) / (startY - apexY), 0, 1);
-        }
-
-        function getMotionVector() {
-          const dx = layout.endX - layout.apexX;
-          const dy = layout.endY - layout.apexY;
-          const len = Math.hypot(dx, dy) || 1;
-          return {
-            dx,
-            dy,
-            ux: dx / len,
-            uy: dy / len,
-            len,
-          };
-        }
-
-        function getMotionDeg() {
-          const { dx, dy } = getMotionVector();
-          return (Math.atan2(dy, dx) * 180) / Math.PI;
-        }
-
-        function getDropAngle() {
-          const motionDeg = getMotionDeg();
-          return motionDeg - 90;
-        }
-
-        function render(now, startTime) {
-          const elapsed = now - startTime;
-          const dropAngle = getDropAngle();
-          const motion = getMotionVector();
-
-          if (elapsed <= HORIZON_MS) {
-            const t = clamp(elapsed / HORIZON_MS, 0, 1);
-            const e = easeOutCubic(t);
-
-            horizon.style.opacity = "1";
-            horizon.style.transform = `scaleX(${Math.max(0.001, e)})`;
-
-            droplet.style.opacity = "0";
-            droplet.style.transform = `translate3d(${layout.apexX - 25}px, ${layout.apexY - 38}px, 0)
-             rotate(${dropAngle}deg)
-             scale(0.96,1.04)`;
-            return true;
-          }
-
-          const me = elapsed - HORIZON_MS;
-
-          if (me <= DROP_MS) {
-            const t = clamp(me / DROP_MS, 0, 1);
-            const pt = getPoint(t);
-            const speed = easeInCubic(t);
-            const opacity = getOpacityByY(pt.y);
-
-            const scaleX = 1 - speed * 0.06;
-            const scaleY = 1 + speed * 0.16;
-
-            droplet.style.opacity = String(opacity);
-            droplet.style.transform = `translate3d(${pt.x - 25}px, ${pt.y - 38}px, 0)
-             rotate(${dropAngle}deg)
-             scale(${scaleX}, ${scaleY})`;
-            return true;
-          }
-
-          const ie = me - DROP_MS;
-          if (ie <= IMPACT_MS) {
-            const t = clamp(ie / IMPACT_MS, 0, 1);
-            const e = easeOutCubic(t);
-
-            const baseX = layout.endX;
-            const baseY = layout.endY;
-
-            const forwardShift = 8 * e;
-            const shiftX = motion.ux * forwardShift;
-            const shiftY = motion.uy * forwardShift;
-
-            const squashX = 1 + 0.72 * e;
-            const squashY = 1 - 0.56 * e;
-            const skew = -10 * e;
-
-            droplet.style.opacity = String(1 - 0.88 * t);
-            droplet.style.transform = `translate3d(${baseX - 25 + shiftX}px, ${baseY - 38 + shiftY}px, 0)
-             rotate(${dropAngle}deg)
-             skewX(${skew}deg)
-             scale(${squashX}, ${squashY})`;
-            return true;
-          }
-
-          droplet.style.opacity = "0";
-          return false;
-        }
-
-        function createTreePath(d, w, cls, delay, duration) {
-          const path = document.createElementNS(
-            "http://www.w3.org/2000/svg",
-            "path",
-          );
-          path.setAttribute("d", d.replace(/\s+/g, " ").trim());
-          path.setAttribute("class", `tree-part ${cls}`);
-          path.setAttribute("stroke-width", w);
-          treeSvg.appendChild(path);
-
-          const len = path.getTotalLength();
-          path.style.strokeDasharray = len;
-          path.style.strokeDashoffset = len;
-          path.dataset.len = len;
-          path.dataset.delay = delay;
-          path.dataset.duration = duration;
-          return path;
-        }
-
-        function createRootPath(d, w, cls, delay, duration) {
-          const path = document.createElementNS(
-            "http://www.w3.org/2000/svg",
-            "path",
-          );
-          path.setAttribute("d", d.replace(/\s+/g, " ").trim());
-          path.setAttribute("class", `root ${cls}`);
-          path.setAttribute("stroke-width", w);
-          rootsSvg.appendChild(path);
-
-          const len = path.getTotalLength();
-          path.style.strokeDasharray = len;
-          path.style.strokeDashoffset = len;
-          path.dataset.len = len;
-          path.dataset.delay = delay;
-          path.dataset.duration = duration;
-          return path;
-        }
-
-        function buildRoots(W, H) {
-          rootsSvg.innerHTML = "";
-          rootsSvg.setAttribute("viewBox", `0 0 ${W} ${H}`);
-          rootsSvg.setAttribute("preserveAspectRatio", "none");
-          rootPaths = [];
-
-          const h = H;
-          const cx = W / 2;
-
-          rootPaths.push(
-            createRootPath(
-              `M${cx} 0
-               C${cx + 4} ${h * 0.16}, ${cx - 6} ${h * 0.34}, ${cx + 2} ${h * 0.56}
-               C${cx + 10} ${h * 0.76}, ${cx + 2} ${h * 0.9}, ${cx} ${h * 1.02}`,
-              3.2,
-              "main",
-              80,
-              1120,
-            ),
-          );
-
-          const primaryRoots = [
-            {
-              dir: -1,
-              sx: cx - 2,
-              sy: h * 0.2,
-              ex: W * 0.12,
-              ey: h * 0.58,
-              d: 300,
-            },
-            {
-              dir: 1,
-              sx: cx + 2,
-              sy: h * 0.22,
-              ex: W * 0.88,
-              ey: h * 0.6,
-              d: 340,
-            },
-            {
-              dir: -1,
-              sx: cx,
-              sy: h * 0.42,
-              ex: W * 0.08,
-              ey: h * 0.84,
-              d: 500,
-            },
-            {
-              dir: 1,
-              sx: cx + 1,
-              sy: h * 0.44,
-              ex: W * 0.92,
-              ey: h * 0.86,
-              d: 540,
-            },
-            {
-              dir: -1,
-              sx: cx - 1,
-              sy: h * 0.64,
-              ex: W * 0.2,
-              ey: h * 1.02,
-              d: 700,
-            },
-            {
-              dir: 1,
-              sx: cx + 1,
-              sy: h * 0.66,
-              ex: W * 0.8,
-              ey: h * 1.02,
-              d: 740,
-            },
-          ];
-
-          primaryRoots.forEach((root) => {
-            rootPaths.push(
-              createRootPath(
-                `M${root.sx} ${root.sy}
-                 C${root.sx + root.dir * W * 0.1} ${root.sy + h * 0.08}, ${root.sx + root.dir * W * 0.22} ${root.sy + h * 0.2}, ${root.ex} ${root.ey}`,
-                1.9,
-                "branch",
-                root.d,
-                760,
-              ),
-            );
-
-            for (let node = 0; node < 2; node += 1) {
-              const by = root.sy + h * (0.12 + node * 0.14);
-              const bx = root.sx + root.dir * W * (0.08 + node * 0.1);
-              const dir = node % 2 === 0 ? root.dir : -root.dir;
-
-              rootPaths.push(
-                createRootPath(
-                  `M${bx} ${by}
-                   C${bx + dir * W * 0.06} ${by + h * 0.06}, ${bx + dir * W * 0.13} ${by + h * 0.14}, ${bx + dir * W * 0.18} ${by + h * 0.22}`,
-                  1.05,
-                  "branch",
-                  root.d + 140 + node * 110,
-                  520,
-                ),
-              );
-            }
-          });
-        }
-
-        function createTreeLeaf(cx, cy, rx, ry, delay) {
-          const leaf = document.createElementNS(
-            "http://www.w3.org/2000/svg",
-            "ellipse",
-          );
-          leaf.setAttribute("cx", cx);
-          leaf.setAttribute("cy", cy);
-          leaf.setAttribute("rx", rx);
-          leaf.setAttribute("ry", ry);
-          leaf.setAttribute("class", "tree-leaf");
-          leaf.setAttribute(
-            "fill",
-            treeLeaves.length % 2 === 0
-              ? "var(--tree-leaf-main)"
-              : "var(--tree-leaf-soft)",
-          );
-          leaf.dataset.delay = delay;
-          treeSvg.appendChild(leaf);
-          return leaf;
-        }
-
-        function addLeafCluster(
-          attachX,
-          attachY,
-          clusterX,
-          clusterY,
-          count,
-          startDelay,
-        ) {
-          treePaths.push(
-            createTreePath(
-              `M${attachX} ${attachY}
-               C${(attachX + clusterX) / 2} ${attachY - 10}, ${(attachX + clusterX) / 2} ${clusterY + 10}, ${clusterX} ${clusterY}`,
-              1.05,
-              "branch",
-              Math.max(420, startDelay - 180),
-              420,
-            ),
-          );
-
-          for (let i = 0; i < count; i += 1) {
-            const angle = (i / count) * Math.PI * 2;
-            const ring = 7 + Math.floor(i / 6) * 4;
-            const leafX = clusterX + Math.cos(angle) * ring;
-            const leafY = clusterY + Math.sin(angle) * ring * 0.68;
-            const rx = 4.6 + (i % 3) * 0.55;
-            const ry = 3.6 + (i % 2) * 0.45;
-            const delay = startDelay + i * 18;
-
-            treeLeaves.push(createTreeLeaf(leafX, leafY, rx, ry, delay));
-          }
-        }
-
-        function buildTree(W, H, horizonY, centerX) {
-          treeSvg.innerHTML = "";
-          treeSvg.setAttribute("viewBox", `0 0 ${W} ${H}`);
-          treeSvg.setAttribute("preserveAspectRatio", "none");
-          treePaths = [];
-          treeLeaves = [];
-
-          const groundY = horizonY + 4;
-          const topY = Math.max(24, horizonY * 0.12);
-
-          treePaths.push(
-            createTreePath(
-              `M${centerX} ${groundY}
-               C${centerX - 2} ${groundY - 38}, ${centerX + 3} ${groundY - 84}, ${centerX} ${groundY - 134}
-               C${centerX - 4} ${groundY - 170}, ${centerX + 6} ${topY + 42}, ${centerX + 2} ${topY}`,
-              4.8,
-              "main",
-              120,
-              1080,
-            ),
-          );
-
-          const majorBranches = [
-            {
-              ax: centerX + 2,
-              ay: groundY - 88,
-              bx: W * 0.78,
-              by: horizonY - H * 0.09,
-              w: 2.4,
-              d: 640,
-            },
-            {
-              ax: centerX - 2,
-              ay: groundY - 94,
-              bx: W * 0.22,
-              by: horizonY - H * 0.08,
-              w: 2.4,
-              d: 680,
-            },
-            {
-              ax: centerX + 1,
-              ay: groundY - 122,
-              bx: W * 0.66,
-              by: horizonY - H * 0.19,
-              w: 1.9,
-              d: 780,
-            },
-            {
-              ax: centerX - 1,
-              ay: groundY - 126,
-              bx: W * 0.34,
-              by: horizonY - H * 0.2,
-              w: 1.9,
-              d: 820,
-            },
-            {
-              ax: centerX + 1,
-              ay: groundY - 146,
-              bx: W * 0.56,
-              by: horizonY - H * 0.26,
-              w: 1.5,
-              d: 920,
-            },
-            {
-              ax: centerX - 1,
-              ay: groundY - 148,
-              bx: W * 0.44,
-              by: horizonY - H * 0.27,
-              w: 1.5,
-              d: 950,
-            },
-          ];
-
-          majorBranches.forEach((branch) => {
-            treePaths.push(
-              createTreePath(
-                `M${branch.ax} ${branch.ay}
-                 C${(branch.ax + branch.bx) / 2} ${branch.ay - 22}, ${(branch.ax + branch.bx) / 2} ${branch.by + 16}, ${branch.bx} ${branch.by}`,
-                branch.w,
-                "branch",
-                branch.d,
-                620,
-              ),
-            );
-          });
-
-          const canopyRows = [
-            {
-              y: horizonY - H * 0.05,
-              xStart: W * 0.16,
-              xEnd: W * 0.84,
-              count: 7,
-              leaves: 10,
-              delay: 860,
-            },
-            {
-              y: horizonY - H * 0.13,
-              xStart: W * 0.14,
-              xEnd: W * 0.86,
-              count: 8,
-              leaves: 10,
-              delay: 930,
-            },
-            {
-              y: horizonY - H * 0.21,
-              xStart: W * 0.18,
-              xEnd: W * 0.82,
-              count: 7,
-              leaves: 9,
-              delay: 1000,
-            },
-            {
-              y: horizonY - H * 0.28,
-              xStart: W * 0.26,
-              xEnd: W * 0.74,
-              count: 5,
-              leaves: 8,
-              delay: 1070,
-            },
-          ];
-
-          canopyRows.forEach((row, rowIndex) => {
-            for (let i = 0; i < row.count; i += 1) {
-              const ratio = row.count === 1 ? 0.5 : i / (row.count - 1);
-              const clusterX = row.xStart + (row.xEnd - row.xStart) * ratio;
-              const clusterY =
-                row.y + Math.sin(ratio * Math.PI) * (-8 - rowIndex * 2);
-
-              const attachBias = (clusterX - centerX) * 0.22;
-              const attachX = centerX + attachBias;
-              const attachY =
-                groundY -
-                (74 + rowIndex * 20) -
-                Math.abs(clusterX - centerX) * 0.04;
-
-              addLeafCluster(
-                attachX,
-                attachY,
-                clusterX,
-                clusterY,
-                row.leaves,
-                row.delay + i * 24,
-              );
-            }
-          });
-        }
-
-        function resetScene() {
-          intro.classList.remove("slide-up");
-          intro.style.display = "block";
-
-          horizon.style.opacity = "1";
-          horizon.style.transform = "scaleX(0.001)";
-
-          droplet.style.opacity = "0";
-          droplet.style.transform = "translate3d(0,0,0)";
-
-          impactFlash.style.opacity = "0";
-          impactFlash.style.transform = "translate(-50%,-50%) scale(0.2)";
-
-          impactRing.style.opacity = "0";
-          impactRing.style.transform = "translate(-50%,-50%) scale(0.24)";
-
-          impactSplash.style.opacity = "0";
-          impactSplash.style.transform =
-            "translate(-50%,-50%) rotate(0deg) translate(0px,0px) scale(0.2)";
-
-          soil.style.opacity = "0";
-          soil.style.transform = "scaleY(0)";
-
-          igemWord.classList.remove("show", "typing");
-          igemMask.style.width = "0px";
-          igemText.textContent = "iGEM";
-          igemCaret.style.opacity = "0";
-
-          rootPaths.forEach((p) => {
-            p.style.opacity = "0";
-            p.style.transition = "none";
-            p.style.strokeDashoffset = p.dataset.len;
-          });
-
-          treePaths.forEach((p) => {
-            p.style.opacity = "0";
-            p.style.transition = "none";
-            p.style.strokeDashoffset = p.dataset.len;
-          });
-
-          treeLeaves.forEach((leaf) => {
-            leaf.style.opacity = "0";
-            leaf.style.transform = "scale(0.2)";
-            leaf.style.transition = "none";
-          });
-        }
-
-        function playImpact() {
-          const motionDeg = getMotionDeg();
-
-          impactFlash.animate(
-            [
-              { opacity: 0, transform: "translate(-50%,-50%) scale(0.2)" },
-              {
-                opacity: 1,
-                transform: "translate(-50%,-50%) scale(1.04)",
-                offset: 0.28,
-              },
-              { opacity: 0, transform: "translate(-50%,-50%) scale(1.42)" },
-            ],
-            {
-              duration: 420,
-              easing: "cubic-bezier(.18,.72,.2,1)",
-              fill: "forwards",
-            },
-          );
-
-          impactRing.animate(
-            [
-              { opacity: 0.82, transform: "translate(-50%,-50%) scale(0.24)" },
-              {
-                opacity: 0.4,
-                transform: "translate(-50%,-50%) scale(1.08,0.72)",
-                offset: 0.55,
-              },
-              {
-                opacity: 0,
-                transform: "translate(-50%,-50%) scale(1.78,0.84)",
-              },
-            ],
-            {
-              duration: 620,
-              easing: "cubic-bezier(.14,.78,.15,1)",
-              fill: "forwards",
-            },
-          );
-
-          impactSplash.animate(
-            [
-              {
-                opacity: 0,
-                transform: `translate(-50%,-50%)
-                 rotate(${motionDeg}deg)
-                 translate(0px, 0px)
-                 scale(0.2)`,
-              },
-              {
-                opacity: 1,
-                transform: `translate(-50%,-50%)
-                 rotate(${motionDeg}deg)
-                 translate(12px, -3px)
-                 scale(1.02)`,
-                offset: 0.3,
-              },
-              {
-                opacity: 0,
-                transform: `translate(-50%,-50%)
-                 rotate(${motionDeg}deg)
-                 translate(28px, -6px)
-                 scale(1.42)`,
-              },
-            ],
-            {
-              duration: 540,
-              easing: "cubic-bezier(.18,.75,.22,1)",
-              fill: "forwards",
-            },
-          );
-        }
-
-        function revealSoilAndTree() {
-          soil.animate(
-            [
-              { opacity: 0, transform: "scaleY(0)" },
-              { opacity: 1, transform: "scaleY(1)" },
-            ],
-            {
-              duration: SOIL_MS,
-              easing: "cubic-bezier(.18,.74,.2,1)",
-              fill: "forwards",
-            },
-          );
-
-          rootPaths.forEach((path) => {
-            const delay = Number(path.dataset.delay);
-            const duration = Number(path.dataset.duration);
-
-            const id = setTimeout(() => {
-              path.style.opacity = "1";
-              path.style.transition = `stroke-dashoffset ${duration}ms cubic-bezier(.2,.76,.24,1), opacity 240ms ease`;
-              path.style.strokeDashoffset = "0";
-            }, delay);
-
-            timers.push(id);
-          });
-
-          treePaths.forEach((path) => {
-            const delay = Number(path.dataset.delay);
-            const duration = Number(path.dataset.duration);
-
-            const id = setTimeout(() => {
-              path.style.opacity = "1";
-              path.style.transition = `stroke-dashoffset ${duration}ms cubic-bezier(.2,.76,.24,1), opacity 240ms ease`;
-              path.style.strokeDashoffset = "0";
-            }, delay);
-
-            timers.push(id);
-          });
-
-          treeLeaves.forEach((leaf) => {
-            const delay = Math.max(120, Number(leaf.dataset.delay) - 620);
-
-            const id = setTimeout(() => {
-              leaf.style.transition =
-                "opacity 280ms ease, transform 360ms cubic-bezier(.18,.74,.2,1)";
-              leaf.style.opacity = "1";
-              leaf.style.transform = "scale(1)";
-            }, delay);
-
-            timers.push(id);
-          });
-        }
-
-        function startTypewriter() {
-          if (typeRafId) cancelAnimationFrame(typeRafId);
-
-          igemText.textContent = "iGEM";
-          igemWord.classList.add("show", "typing");
-          igemCaret.style.opacity = "1";
-
-          igemMask.style.width = "auto";
-          const fullWidth = igemText.getBoundingClientRect().width;
-          igemMask.style.width = "0px";
-
-          const start = performance.now();
-
-          function tick(now) {
-            const p = clamp((now - start) / TYPE_MS, 0, 1);
-            const eased = easeInOutSine(p);
-            igemMask.style.width = `${fullWidth * eased}px`;
-
-            if (p < 1) {
-              typeRafId = requestAnimationFrame(tick);
-            } else {
-              igemMask.style.width = `${fullWidth}px`;
-              igemWord.classList.remove("typing");
-              igemCaret.style.opacity = "0";
-              typeRafId = null;
-            }
-          }
-
-          typeRafId = requestAnimationFrame(tick);
-        }
-
-        function slideIntroAway() {
-          intro.classList.add("slide-up");
-          const id = setTimeout(() => {
-            intro.style.display = "none";
-            document.body.style.overflow = "auto";
-            try {
-              window.parent?.postMessage({ type: "IGEM_SPLASH_DONE" }, "*");
-            } catch {
-              // no-op
-            }
-          }, EXIT_MS + 40);
-          timers.push(id);
-        }
-
-        function clearAllTimers() {
-          if (rafId) cancelAnimationFrame(rafId);
-          if (typeRafId) cancelAnimationFrame(typeRafId);
-          timers.forEach((id) => clearTimeout(id));
-          timers = [];
-        }
-
-        function start() {
-          clearAllTimers();
-          resetScene();
-
-          const startTime = performance.now();
-          let impactTriggered = false;
-
-          function frame(now) {
-            const alive = render(now, startTime);
-            const elapsed = now - startTime;
-
-            if (!impactTriggered && elapsed >= HORIZON_MS + DROP_MS) {
-              impactTriggered = true;
-              playImpact();
-              revealSoilAndTree();
-
-              const t1 = setTimeout(startTypewriter, 150);
-              timers.push(t1);
-
-              const t2 = setTimeout(slideIntroAway, 150 + TYPE_MS + 360);
-              timers.push(t2);
+          drawSideCluster(leftX, -1, '151, 226, 255', '137, 255, 206');
+          drawSideCluster(rightX, 1, '151, 226, 255', '137, 255, 206');
+
+          for (let i = 0; i < particles.length; i++) {
+            const p = particles[i];
+            p.a += p.speed * dt;
+            const orb = p.orbit * (1 - moveP * 0.75) * (1 - dissolveP * 0.6);
+            p.x = lx + Math.cos(p.a + i * 0.015) * orb;
+            p.y = ly + Math.sin(p.a + i * 0.015) * orb * 0.74;
+
+            p.trail.pop();
+            p.trail.unshift({ x: p.x, y: p.y });
+
+            for (let j = 1; j < p.trail.length; j++) {
+              const a = 0.34 * ((p.trail.length - j) / p.trail.length) * fxFade;
+              c.strokeStyle = `rgba(91, 225, 255, ${a})`;
+              c.lineWidth = 0.8;
+              c.beginPath();
+              c.moveTo(p.trail[j - 1].x, p.trail[j - 1].y);
+              c.lineTo(p.trail[j].x, p.trail[j].y);
+              c.stroke();
             }
 
-            if (
-              alive ||
-              elapsed <
-                HORIZON_MS + DROP_MS + IMPACT_MS + TYPE_MS + EXIT_MS + 700
-            ) {
-              rafId = requestAnimationFrame(frame);
-            }
+            const tw = 0.55 + Math.sin(t * 0.005 + p.twinkle) * 0.45;
+            c.fillStyle = `rgba(178, 248, 255, ${(0.45 + tw * 0.45) * fxFade})`;
+            c.beginPath();
+            c.arc(p.x, p.y, p.r * (0.8 + tw * 0.4), 0, Math.PI * 2);
+            c.fill();
           }
 
-          rafId = requestAnimationFrame(frame);
+          const logoAlpha = (0.2 + revealP * 0.8) * (1 - dissolveP * 0.92);
+
+          c.save();
+          c.translate(lx, ly);
+          c.scale(pulse, pulse);
+          c.globalAlpha = logoAlpha;
+          if (logo.ready && logo.img) {
+            c.drawImage(logo.img, -ls * 0.5, -ls * 0.5, ls, ls);
+          } else {
+            c.fillStyle = 'rgba(180, 245, 255, 0.85)';
+            c.beginPath();
+            c.arc(0, 0, ls * 0.2, 0, Math.PI * 2);
+            c.fill();
+          }
+          // Subtle dual-tone edge glows around logo for depth
+          c.globalCompositeOperation = 'screen';
+          c.shadowBlur = 12;
+          c.shadowColor = `rgba(102, 234, 255, ${0.38 * fxFade})`;
+          c.strokeStyle = `rgba(120, 230, 255, ${0.28 * fxFade})`;
+          c.lineWidth = 1.2;
+          c.strokeRect(-ls * 0.5, -ls * 0.5, ls, ls);
+          c.shadowColor = `rgba(120, 255, 186, ${0.3 * fxFade})`;
+          c.strokeStyle = `rgba(120, 255, 186, ${0.22 * fxFade})`;
+          c.strokeRect(-ls * 0.48, -ls * 0.48, ls * 0.96, ls * 0.96);
+          c.restore();
+
+          const scanP = ((t * 0.0016) % 1);
+          const y = ly - ls * 0.5 + scanP * ls;
+          c.strokeStyle = `rgba(173, 255, 215, ${0.35 * (1 - Math.abs(scanP - 0.5) * 2) * fxFade})`;
+          c.lineWidth = 1.2;
+          c.beginPath();
+          c.moveTo(lx - ls * 0.5, y);
+          c.lineTo(lx + ls * 0.5, y);
+          c.stroke();
         }
 
-        let resizeDebounce = null;
+        function finish() {
+          stage.style.display = 'none';
+          document.body.style.overflow = 'auto';
+          try {
+            window.parent?.postMessage({ type: 'IGEM_SPLASH_DONE' }, '*');
+          } catch {}
+          window.dispatchEvent(new Event('IGEM_SPLASH_DONE'));
+        }
+
+        function triggerExit() {
+          if (done) return;
+          done = true;
+          if (raf) cancelAnimationFrame(raf);
+          stage.classList.add('exiting');
+          setTimeout(finish, TIMING.exit + 40);
+        }
+
+        function frame(now) {
+          if (done) return;
+          if (!start) {
+            start = now;
+            prev = now;
+          }
+
+          const t = now - start;
+          const dt = Math.min(40, now - prev);
+          prev = now;
+
+          drawBackground(t);
+          drawLogoAndFx(t, dt);
+
+          if (t >= AT.exit) {
+            triggerExit();
+            return;
+          }
+
+          raf = requestAnimationFrame(frame);
+        }
 
         function init() {
-          clearAllTimers();
-          setLayout();
-          resetScene();
-          start();
+          done = false;
+          start = 0;
+          prev = 0;
+          stage.classList.remove('exiting');
+          if (raf) cancelAnimationFrame(raf);
+          resize();
+          raf = requestAnimationFrame(frame);
         }
 
-        window.addEventListener("resize", () => {
-          clearTimeout(resizeDebounce);
-          resizeDebounce = setTimeout(init, 120);
+        let resizeTimer = 0;
+        window.addEventListener('resize', () => {
+          clearTimeout(resizeTimer);
+          resizeTimer = setTimeout(init, 120);
         });
 
+        loadLogo();
         init();
       })();
     </script>

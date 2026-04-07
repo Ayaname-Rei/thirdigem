@@ -1,0 +1,354 @@
+---
+import '../../styles/team-experiment.css';
+import teamExperimentScriptUrl from '../../scripts/team-experiment.js?url';
+
+const sidebarItems = [
+  { href: '#experiment-overview', label: 'Overview' },
+  { href: '#experiment-part-1', label: 'Part 1 · Chassis and construct design' },
+  { href: '#experiment-part-2', label: 'Part 2 · Soil-response validation' },
+  { href: '#experiment-part-3', label: 'Part 3 · Functional performance testing' },
+  { href: '#experiment-part-4', label: 'Part 4 · Biosafety and deployment preparation' },
+  { href: '#experiment-conclusions', label: 'Conclusions' },
+  { href: '#experiment-references', label: 'References' }
+];
+
+const partSections = [
+  {
+    sectionId: 'experiment-part-1',
+    title: 'Part 1 · Chassis and construct design',
+    goal: 'Establish a clear design logic for the engineered strain, genetic circuit, and first-round validation workflow before wet-lab execution.',
+    cycles: [
+      {
+        id: 'part-1-cycle-1',
+        label: 'Cycle 1',
+        title: 'Cycle 1 · Design logic and construct mapping',
+        subtitle: 'Design',
+        paragraphs: [
+          'Use this section to explain strain choice, plasmid strategy, circuit architecture, and the biological assumptions that guided the first construction round.',
+          'You can also place registry parts logic, backbone selection, and control-group planning in this opening cycle.'
+        ]
+      },
+      {
+        id: 'part-1-cycle-2',
+        label: 'Cycle 2',
+        title: 'Cycle 2 · Assembly and troubleshooting',
+        subtitle: 'Build / Test',
+        paragraphs: [
+          'Reserve this block for cloning progress, verification workflow, assembly bottlenecks, and the changes you made after the first build attempt.',
+          'This is a good place for gel images, plasmid maps, and concise build-status comparisons.'
+        ]
+      },
+      {
+        id: 'part-1-cycle-3',
+        label: 'Cycle 3',
+        title: 'Cycle 3 · Refined design for the next module',
+        subtitle: 'Learn',
+        paragraphs: [
+          'Use the last cycle to summarize what the first design round validated, what had to be revised, and how the updated construct informed the next experiment stage.',
+          'You can also add a compact decision table here to make the engineering loop more explicit.'
+        ]
+      }
+    ]
+  },
+  {
+    sectionId: 'experiment-part-2',
+    title: 'Part 2 · Soil-response validation',
+    goal: 'Test whether the engineered system responds as intended under soil-related conditions and build an interpretable readout workflow.',
+    cycles: [
+      {
+        id: 'part-2-cycle-1',
+        label: 'Cycle 1',
+        title: 'Cycle 1 · Experimental setup for environmental response',
+        subtitle: 'Design',
+        paragraphs: [
+          'Use this section for the setup of soil-signal simulation, inducer choice, media conditions, and the rationale behind each readout endpoint.',
+          'This block also works for describing sample grouping, time points, and baseline expectations.'
+        ]
+      },
+      {
+        id: 'part-2-cycle-2',
+        label: 'Cycle 2',
+        title: 'Cycle 2 · Measurement, comparison, and optimization',
+        subtitle: 'Test',
+        paragraphs: [
+          'Summarize fluorescence, growth, reporter output, or other response data here, especially if you need to compare multiple environmental conditions or construct versions.',
+          'If the first results were noisy or weak, this is the place to explain threshold adjustment and condition optimization.'
+        ]
+      },
+      {
+        id: 'part-2-cycle-3',
+        label: 'Cycle 3',
+        title: 'Cycle 3 · Interpretation and iteration path',
+        subtitle: 'Learn',
+        paragraphs: [
+          'Use the final cycle to explain what the response data actually told you, which environmental signal mattered most, and what should be improved before later modules.',
+          'You can connect this conclusion directly to the following functional assay section.'
+        ]
+      }
+    ]
+  },
+  {
+    sectionId: 'experiment-part-3',
+    title: 'Part 3 · Functional performance testing',
+    goal: 'Evaluate whether the engineered microorganism delivers the expected functional outcome and identify the strongest evidence for system-level performance.',
+    cycles: [
+      {
+        id: 'part-3-cycle-1',
+        label: 'Cycle 1',
+        title: 'Cycle 1 · Functional assay planning',
+        subtitle: 'Design',
+        paragraphs: [
+          'Use this section to define assay strategy, success criteria, and how the function you care about is translated into measurable endpoints.',
+          'It also works for explaining what counts as improvement over the baseline or control strains.'
+        ]
+      },
+      {
+        id: 'part-3-cycle-2',
+        label: 'Cycle 2',
+        title: 'Cycle 2 · Assay execution and result structure',
+        subtitle: 'Build / Test',
+        paragraphs: [
+          'Keep your main result narrative here: assay results, repeatability, variance, and any discrepancies between expected and observed system behavior.',
+          'This is a strong place for charts, table snapshots, microscopy, or phenotype photos.'
+        ]
+      },
+      {
+        id: 'part-3-cycle-3',
+        label: 'Cycle 3',
+        title: 'Cycle 3 · System interpretation and next refinement',
+        subtitle: 'Learn',
+        paragraphs: [
+          'Use the last cycle to summarize what functional evidence is already convincing, where the system is still fragile, and which redesign direction is most meaningful next.',
+          'You can also compare outcomes across multiple assay rounds or engineered variants here.'
+        ]
+      }
+    ]
+  },
+  {
+    sectionId: 'experiment-part-4',
+    title: 'Part 4 · Biosafety and deployment preparation',
+    goal: 'Explain how the design is constrained by safety, controllability, and eventual application logic, and record the experiments or decisions supporting those constraints.',
+    cycles: [
+      {
+        id: 'part-4-cycle-1',
+        label: 'Cycle 1',
+        title: 'Cycle 1 · Safety strategy and control assumptions',
+        subtitle: 'Design',
+        paragraphs: [
+          'Use this block to explain containment logic, fail-safe thinking, environmental boundaries, or any assumptions made before validation started.',
+          'You can also connect human-practices feedback or deployment scenario constraints here.'
+        ]
+      },
+      {
+        id: 'part-4-cycle-2',
+        label: 'Cycle 2',
+        title: 'Cycle 2 · Verification and scenario testing',
+        subtitle: 'Test',
+        paragraphs: [
+          'Describe kill-switch tests, survivability comparisons, deployment simulations, or control experiments that help support responsible use of the system.',
+          'Photographs, assay results, and structured comparison tables fit well in the placeholder panels below.'
+        ]
+      },
+      {
+        id: 'part-4-cycle-3',
+        label: 'Cycle 3',
+        title: 'Cycle 3 · Final deployment-facing conclusion',
+        subtitle: 'Learn',
+        paragraphs: [
+          'Use the last cycle for the final interpretation: what the project is ready for, what remains experimental, and how the current design should be framed when presented publicly.',
+          'A final deployment roadmap or integrated system diagram works especially well here.'
+        ]
+      }
+    ]
+  }
+];
+---
+
+<div class="cx-layout-page cx-layout-page--experiment" data-cx-experiment-root>
+  <section class="page-hero page-hero--experiment page-hero--experiment-custom">
+    <div class="page-shell experiment-hero-shell">
+      <div class="section-head reveal">
+        <p class="eyebrow">Experiment</p>
+        <h1>A long-form engineering page with structure, anchors, and calm pacing.</h1>
+        <p class="page-hero__lead">
+          This page keeps the layout logic from Astro_2: a reserved top visual block, a slide-in left navigator, and cycle
+          tabs inside each experimental section. The materials and colors are adapted so the page feels continuous with the
+          existing cx-igem site rather than pasted in from another project.
+        </p>
+      </div>
+
+      <article class="experiment-collage-module reveal reveal--delay">
+        <div class="experiment-collage-module__meta">
+          <p class="mini-label">Reserved top photo block</p>
+          <h2>Featured experiment collage placeholder</h2>
+          <p>
+            Keep this whole block for laboratory photos, system schematics, annotated figures, or a layered visual summary.
+            The proportions and internal block arrangement follow Astro_2, but the rendering is re-styled for cx-igem.
+          </p>
+        </div>
+
+        <div class="experiment-collage-module__stage" aria-label="Reserved area for future experiment photo composition">
+          <span class="experiment-collage-module__wire experiment-collage-module__wire--one" aria-hidden="true"></span>
+          <span class="experiment-collage-module__wire experiment-collage-module__wire--two" aria-hidden="true"></span>
+          <span class="experiment-collage-module__wire experiment-collage-module__wire--three" aria-hidden="true"></span>
+
+          <div class="experiment-collage-module__frame experiment-collage-module__frame--main">
+            <span>Main experiment composition placeholder</span>
+          </div>
+          <div class="experiment-collage-module__frame experiment-collage-module__frame--left">
+            <span>Supporting lab image</span>
+          </div>
+          <div class="experiment-collage-module__frame experiment-collage-module__frame--right">
+            <span>Detail annotation block</span>
+          </div>
+          <div class="experiment-collage-module__frame experiment-collage-module__frame--top">
+            <span>Small headline visual</span>
+          </div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section class="page-section page-section--tinted experiment-body-section" data-experiment-content-start>
+    <div class="page-shell experiment-layout-shell">
+      <aside class="experiment-side-nav" data-experiment-sidebar aria-label="Experiment section navigation">
+        <div class="experiment-side-nav__inner">
+          <p class="experiment-side-nav__title">Engineering</p>
+          <nav class="experiment-side-nav__list">
+            {
+              sidebarItems.map((item) => (
+                <a href={item.href} data-exp-nav-link>{item.label}</a>
+              ))
+            }
+          </nav>
+        </div>
+      </aside>
+
+      <div class="experiment-main-column">
+        <article id="experiment-overview" class="experiment-panel experiment-panel--overview" data-exp-section>
+          <header class="experiment-section-header">
+            <h2>Overview</h2>
+            <p>
+              Use this overview section to introduce the whole engineering logic of the experiment page. You can summarize
+              how construct design, soil response, system function, and biosafety connect into one continuous design-build-test-learn path.
+            </p>
+          </header>
+
+          <div class="experiment-richtext">
+            <h3>How to use this structure</h3>
+            <p>
+              Each major part below includes cycle tabs. Clicking a tab jumps to the corresponding cycle card inside that
+              section, while the left sidebar follows the overall page structure and only slides in after the main document enters view.
+            </p>
+            <div class="experiment-figure-grid experiment-figure-grid--two">
+              <figure class="experiment-figure-block">
+                <div class="experiment-figure-block__canvas">Insert system overview / experiment roadmap here</div>
+                <figcaption>Figure placeholder for workflow overview, experiment map, or engineering logic summary.</figcaption>
+              </figure>
+              <figure class="experiment-figure-block">
+                <div class="experiment-figure-block__canvas">Insert timeline / summary chart here</div>
+                <figcaption>Figure placeholder for timeline, milestone structure, or high-level comparison.</figcaption>
+              </figure>
+            </div>
+          </div>
+        </article>
+
+        {
+          partSections.map((part) => (
+            <section id={part.sectionId} class="experiment-panel" data-exp-section>
+              <header class="experiment-section-header">
+                <h2>{part.title}</h2>
+                <div class="experiment-goal-line">
+                  <strong>Goal:</strong>
+                  <span>{part.goal}</span>
+                </div>
+              </header>
+
+              <nav class="experiment-cycle-tabs" data-cycle-tabs role="tablist" aria-label={`${part.title} cycle navigation`}>
+                {
+                  part.cycles.map((cycle, cycleIndex) => (
+                    <a href={`#${cycle.id}`} class={cycleIndex === 0 ? 'is-active' : ''} data-cycle-tab>
+                      {cycle.label}
+                    </a>
+                  ))
+                }
+              </nav>
+
+              <div class="experiment-cycle-stack">
+                {
+                  part.cycles.map((cycle, cycleIndex) => (
+                    <article
+                      id={cycle.id}
+                      class={cycleIndex === 0 ? 'experiment-cycle-card is-active' : 'experiment-cycle-card'}
+                      data-cycle-panel
+                      aria-hidden={cycleIndex === 0 ? 'false' : 'true'}
+                    >
+                      <div class="experiment-cycle-card__header">
+                        <div>
+                          <p class="mini-label">{cycle.subtitle}</p>
+                          <h3>{cycle.title}</h3>
+                        </div>
+                      </div>
+
+                      <div class="experiment-richtext">
+                        <h4>{cycle.subtitle}</h4>
+                        {cycle.paragraphs.map((text) => <p>{text}</p>)}
+
+                        <div class="experiment-figure-grid experiment-figure-grid--two">
+                          <figure class="experiment-figure-block">
+                            <div class="experiment-figure-block__canvas">Insert experimental image / chart here</div>
+                            <figcaption>Figure placeholder for raw data, schematics, photos, microscopy, or assay results.</figcaption>
+                          </figure>
+                          <figure class="experiment-figure-block">
+                            <div class="experiment-figure-block__canvas">Insert supporting comparison panel here</div>
+                            <figcaption>Figure placeholder for comparison tables, annotations, or a second evidence panel.</figcaption>
+                          </figure>
+                        </div>
+
+                        <h4>Notes</h4>
+                        <p>
+                          Keep this paragraph for interpretation, troubleshooting notes, or the reasoning that connects one engineering cycle to the next.
+                        </p>
+                      </div>
+                    </article>
+                  ))
+                }
+              </div>
+            </section>
+          ))
+        }
+
+        <article id="experiment-conclusions" class="experiment-panel" data-exp-section>
+          <header class="experiment-section-header">
+            <h2>Conclusions</h2>
+          </header>
+          <div class="experiment-richtext">
+            <h3>Engineering summary</h3>
+            <p>
+              Use this section to summarize what was validated, what still needs refinement, and how the experimental story
+              evolved from the first design assumptions to the current system-level conclusion.
+            </p>
+            <div class="experiment-figure-block experiment-figure-block--wide">
+              <div class="experiment-figure-block__canvas">Insert integrated conclusion figure / system diagram here</div>
+            </div>
+          </div>
+        </article>
+
+        <article id="experiment-references" class="experiment-panel" data-exp-section>
+          <header class="experiment-section-header">
+            <h2>References</h2>
+          </header>
+          <div class="experiment-richtext">
+            <h3>Reference list placeholder</h3>
+            <p>
+              Keep this section for literature citations, protocol references, registry links, and supplementary notes.
+              Replace this placeholder paragraph with your final formatted reference list later.
+            </p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <script type="module" src={teamExperimentScriptUrl}></script>
+</div>

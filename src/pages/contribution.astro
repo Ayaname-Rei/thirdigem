@@ -1,0 +1,10 @@
+---
+import StandardCompatPage from '../components/pages/StandardCompatPage.astro';
+import { withBase } from '../utils/baseUrl';
+---
+
+<StandardCompatPage pageTitle="Contribution" heading="Contribution">
+  This standard URL page is provided for iGEM judging compatibility.
+  Contribution-related documentation currently references
+  <a href={withBase('description')}>Description</a>.
+</StandardCompatPage>

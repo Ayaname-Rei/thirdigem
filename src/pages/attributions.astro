@@ -1,0 +1,10 @@
+---
+import StandardCompatPage from '../components/pages/StandardCompatPage.astro';
+import { withBase } from '../utils/baseUrl';
+---
+
+<StandardCompatPage pageTitle="Attributions" heading="Attributions">
+  This standard URL page is provided for iGEM judging compatibility.
+  Team and collaboration information is currently documented on
+  <a href={withBase('team')}>Team</a>.
+</StandardCompatPage>

@@ -3,29 +3,18 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-   "homepage": "https://y7hl.github.io/2026third-igem-team",
+  "homepage": "https://y7hl.github.io/2026third-igem-team",
   "scripts": {
-  "dev": "vite",
-  "build": "vite build",
-  "preview": "vite preview",
-  "deploy": "gh-pages -d dist"
-},
-  "dependencies": {
-    "react": "^19.2.4",
-    "react-dom": "^19.2.4",
-    "react-router-dom": "^7.13.2",
-    "typed.js": "^3.0.0"
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "prepare:cdn": "node scripts/prepare-cdn-assets.cjs",
+    "deploy:github-pages": "gh-pages -d dist"
   },
   "devDependencies": {
-    "@eslint/js": "^9.39.4",
-    "@types/react": "^19.2.14",
-    "@types/react-dom": "^19.2.3",
-    "@vitejs/plugin-react": "^6.0.0",
-    "eslint": "^9.39.4",
-    "eslint-plugin-react-hooks": "^7.0.1",
-    "eslint-plugin-react-refresh": "^0.5.2",
-    "gh-pages": "^6.3.0",
-    "globals": "^17.4.0",
-    "vite": "^8.0.0"
+    "@fontsource/cormorant-garamond": "^5.2.11",
+    "@fontsource/inter": "^5.2.8",
+    "astro": "^6.1.3",
+    "gh-pages": "^6.3.0"
   }
 }

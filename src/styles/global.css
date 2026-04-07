@@ -1,0 +1,226 @@
+@import '@fontsource/inter/400.css';
+@import '@fontsource/inter/500.css';
+@import '@fontsource/inter/600.css';
+@import '@fontsource/inter/700.css';
+@import '@fontsource/inter/800.css';
+@import '@fontsource/cormorant-garamond/500.css';
+@import '@fontsource/cormorant-garamond/600.css';
+@import '@fontsource/cormorant-garamond/700.css';
+
+:root {
+  /* Soil microbiome palette: deep soil + bioluminescent microbes */
+  --soil-light: #2b2017;
+  --soil-mid: #3f2b1f;
+  --soil-dark: #120e0b;
+  --main-warm: #ff7a00;
+  --main-brown: #120e0b;
+  --main-orange: #ff5a00;
+  --main-beige: #4f3a2b;
+  --accent: #5fcf4f;
+  --accent-bg: #173622;
+  --border: #4b3829;
+  --bg: #dbf2e4;
+  --text: #143223;
+  --text-h: #0d2419;
+  --white: #ffffff;
+  --code-bg: #1b1612;
+  --shadow: rgba(0, 0, 0, 0.45) 0 14px 30px -12px, rgba(0, 0, 0, 0.28) 0 8px 16px -10px;
+  --glow: 0 0 24px rgba(61, 170, 95, 0.45);
+
+  /* extended warm tokens */
+  --color-emerald: #4bc05d;
+  --color-teal: #00b894;
+  --color-cyan: #24b8ea;
+  --color-blue: #2d79d7;
+  --color-purple: #4941d9;
+  --color-pink: #ff4fd8;
+  --color-orange: #ff7a00;
+  --color-amber: #ffc400;
+  --color-red: #ff3b30;
+
+  /* gradients */
+  --grad-green: linear-gradient(135deg, #3bb14f, #009f89);
+  --grad-earth: linear-gradient(135deg, #1f1611, #4b2f1b);
+  --grad-sunset: linear-gradient(135deg, #ff5a00, #ffc400);
+  --grad-ocean: linear-gradient(135deg, #009f89, #2d90d9);
+  --grad-forest: linear-gradient(135deg, #1d4a2f, #47b95d);
+  --grad-aurora: linear-gradient(135deg, #3baa4d, #2d90d9, #ffb648);
+
+  --sans: 'Inter', 'Noto Sans', 'Microsoft YaHei', 'PingFang SC', 'Segoe UI', Arial, sans-serif;
+  --ui: 'Inter', 'Noto Sans', 'Microsoft YaHei', 'PingFang SC', 'Segoe UI', Arial, sans-serif;
+  --display: 'Cormorant Garamond', 'STSong', 'Songti SC', Georgia, serif;
+  --heading: 'Inter', 'Noto Sans', 'Microsoft YaHei', 'PingFang SC', 'Segoe UI', Arial, sans-serif;
+  --mono: ui-monospace, Consolas, monospace;
+
+  font: 16px/1.65 var(--sans);
+  letter-spacing: 0.01em;
+  color-scheme: light;
+  color: var(--text);
+  background: var(--bg);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  @media (max-width: 1024px) {
+    font-size: 15px;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 14px;
+  }
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background:
+    radial-gradient(circle at 15% 10%, rgba(66, 181, 92, 0.24), transparent 42%),
+    radial-gradient(circle at 85% 18%, rgba(32, 171, 214, 0.16), transparent 42%),
+    radial-gradient(circle at 50% 100%, rgba(76, 162, 101, 0.2), transparent 38%),
+    linear-gradient(155deg, #e5f8ee 0%, #d8f1e7 46%, #cfeadb 100%);
+  color: var(--text);
+  min-height: 100svh;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+  font-family: var(--ui);
+}
+
+::selection {
+  background: rgba(255, 179, 0, 0.24);
+  color: var(--text-h);
+}
+
+main {
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  text-align: center;
+  border-inline: none;
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--display);
+  font-weight: 600;
+  color: var(--text-h);
+}
+
+h1 {
+  font-size: 56px;
+  letter-spacing: -0.04em;
+  margin: 32px 0;
+  @media (max-width: 1024px) {
+    font-size: 36px;
+    margin: 20px 0;
+  }
+}
+
+h2 {
+  font-size: 24px;
+  line-height: 118%;
+  letter-spacing: -0.025em;
+  margin: 0 0 8px;
+  @media (max-width: 1024px) {
+    font-size: 20px;
+  }
+}
+
+p {
+  margin: 0;
+}
+
+code {
+  font-family: var(--mono);
+  font-size: 15px;
+  line-height: 135%;
+  padding: 4px 8px;
+  border-radius: 4px;
+  color: var(--text-h);
+  background: var(--code-bg);
+}
+
+/* ===== 全局自定义光标系统 ===== */
+.chemotaxis-cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 12000;
+  opacity: 0;
+  transform: translate(-999px, -999px);
+  background: radial-gradient(circle, #b7ef8f 0%, #39c18a 52%, rgba(46, 171, 124, 0) 100%);
+  box-shadow: 0 0 18px rgba(57, 193, 138, 0.72);
+  transition: opacity 0.18s ease;
+  will-change: transform;
+  mix-blend-mode: normal;
+}
+
+.chemotaxis-cursor::before,
+.chemotaxis-cursor::after {
+  content: '';
+  position: absolute;
+  inset: 50%;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.chemotaxis-cursor::before {
+  width: 30px;
+  height: 30px;
+  border: 2px solid rgba(82, 204, 153, 0.74);
+  box-shadow: 0 0 16px rgba(57, 193, 138, 0.52);
+}
+
+.chemotaxis-cursor::after {
+  width: 52px;
+  height: 52px;
+  border: 2px dashed rgba(47, 155, 228, 0.62);
+  animation: cursor-orbit 1.7s linear infinite;
+}
+
+.chemotaxis-cursor.is-active {
+  opacity: 1;
+}
+
+.chemotaxis-cursor.pulse {
+  animation: nutrient-pulse 0.22s ease;
+}
+
+.chemotaxis-cursor.is-pressed::before {
+  width: 48px;
+  height: 48px;
+}
+
+@keyframes nutrient-pulse {
+  from {
+    box-shadow:
+      0 0 12px rgba(57, 193, 138, 0.62),
+      0 0 20px rgba(47, 155, 228, 0.28);
+  }
+  to {
+    box-shadow:
+      0 0 34px rgba(57, 193, 138, 0.95),
+      0 0 54px rgba(47, 155, 228, 0.58);
+  }
+}
+
+@keyframes cursor-orbit {
+  to {
+    transform: translate(-50%, -50%) rotateZ(360deg);
+  }
+}

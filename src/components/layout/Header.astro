@@ -1,0 +1,104 @@
+---
+import '../../styles/Header.css';
+import { withBase, getHomeUrl } from '../../utils/baseUrl';
+
+const navItems = [
+  { name: 'Home', path: getHomeUrl(), icon: '🏠' },
+  { name: 'Awards', path: withBase('awards'), icon: '🏆' },
+  {
+    name: 'Project',
+    path: withBase('description'),
+    icon: '📊',
+    subItems: [
+      { name: 'Description', path: withBase('description') },
+      { name: 'Hardware', path: withBase('hardware') },
+      { name: 'Model', path: withBase('model') },
+    ],
+  },
+  {
+    name: 'Lab',
+    path: withBase('experiments'),
+    icon: '🧪',
+    subItems: [{ name: 'Experiments', path: withBase('experiments') }],
+  },
+  { name: 'Human Practices', path: withBase('human-practices'), icon: '👥' },
+  { name: 'Team', path: withBase('team'), icon: '👨‍👩‍👧‍👦' },
+];
+---
+
+<header class="header">
+  <div class="header-container">
+    <a class="logo" href={getHomeUrl()} aria-label="SoilSyn iGEM Home">
+      <div class="logo-icon" aria-hidden="true">
+        <img src={withBase('brand-mark.svg')} alt="" loading="eager" />
+      </div>
+      <div class="logo-text">
+        <span class="logo-main">SOILSYN iGEM</span>
+        <span class="logo-sub">MICROBIOME ENGINEERING</span>
+      </div>
+    </a>
+
+    <button class="mobile-menu" aria-expanded="false" aria-label="Toggle navigation">
+      &#9776;
+    </button>
+
+    <nav class="nav">
+      <ul class="nav-list">
+        {navItems.map((item) => (
+          <li key={item.name} class={`nav-item ${item.subItems ? 'has-dropdown' : ''}`}>
+            <a class="nav-link" href={item.path}>
+              <span class="nav-icon">{item.icon}</span>
+              <span class="nav-text">{item.name}</span>
+            </a>
+            {item.subItems && (
+              <ul class="nav-dropdown">
+                {item.subItems.map((sub) => (
+                  <li key={sub.name}>
+                    <a href={sub.path}>{sub.name}</a>
+                  </li>
+                ))}
+              </ul>
+            )}
+          </li>
+        ))}
+      </ul>
+    </nav>
+
+    <div class="mobile-nav" id="mobile-nav">
+      <ul>
+        {navItems.map((item) => (
+          <li key={item.name}>
+            <a href={item.path}>{item.name}</a>
+            {item.subItems && (
+              <ul class="mobile-sub-nav">
+                {item.subItems.map((sub) => (
+                  <li key={sub.name}>
+                    <a href={sub.path}>{sub.name}</a>
+                  </li>
+                ))}
+              </ul>
+            )}
+          </li>
+        ))}
+      </ul>
+    </div>
+  </div>
+
+  <script>
+    const mobileMenu = document.querySelector('.mobile-menu');
+    const mobileNav = document.getElementById('mobile-nav');
+
+    mobileMenu?.addEventListener('click', () => {
+      if (!mobileNav) return;
+      const open = mobileNav.classList.toggle('open');
+      mobileMenu.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+
+    mobileNav?.addEventListener('click', (event) => {
+      const target = event.target;
+      if (!(target instanceof HTMLAnchorElement)) return;
+      mobileNav.classList.remove('open');
+      mobileMenu?.setAttribute('aria-expanded', 'false');
+    });
+  </script>
+</header>

@@ -1,0 +1,79 @@
+---
+// 基础布局 - 所有页面的主布局
+// 包含Header、Footer和Splash动画系统
+import '../styles/global.css';
+import Header from '../components/layout/Header.astro';
+import Footer from '../components/layout/Footer.astro';
+import { getBaseUrl } from '../utils/baseUrl';
+import layoutRuntimeUrl from '../scripts/layout-runtime.ts?url';
+
+const normalizedBaseUrl = getBaseUrl();
+// 用于资源路径，确保正确的前缀
+const assetBase = normalizedBaseUrl === '/' ? '/' : `${normalizedBaseUrl}/`;
+
+interface Props {
+  title?: string;
+}
+
+const { title = "iGEM 2026 - 3rd Team" } = Astro.props;
+---
+
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <link rel="icon" type="image/svg+xml" href={`${assetBase}favicon.svg`} />
+
+    <!-- Google Analytics 等追踪代码可在此添加 -->
+  </head>
+
+  <body>
+    <!-- 自定义光标 -->
+    <div class="chemotaxis-cursor" id="chemotaxis-cursor" aria-hidden="true"></div>
+
+    <Header />
+
+    <!-- Splash 动画容器 -->
+    <iframe
+      id="splash-frame"
+      src={`${assetBase}opening-animation.html`}
+      style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; border: none; z-index: 9999; pointer-events: none;"
+      title="Opening Animation"
+    ></iframe>
+
+    <!-- 主内容容器 -->
+
+    <main id="main-content" style="opacity:0;transition:opacity 0.7s cubic-bezier(.4,0,.2,1);">
+      <slot />
+    </main>
+
+    <Footer />
+
+    <script type="module" src={layoutRuntimeUrl}></script>
+
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: var(--sans);
+        color: var(--text);
+        background: var(--bg);
+      }
+
+      h1, h2 {
+        font-family: var(--heading);
+      }
+
+      #main-content {
+        min-height: 100vh;
+      }
+
+      body.splash-active #main-content {
+        opacity: 1 !important;
+        pointer-events: none;
+      }
+    </style>
+  </body>
+</html>

@@ -1,0 +1,156 @@
+---
+import '../../styles/team-experiment.css';
+import teamExperimentScriptUrl from '../../scripts/team-experiment.js?url';
+
+const members = [
+  {
+    name: 'Member Name 01',
+    role: 'Student Leader',
+    label: 'Core team',
+    tone: 'soil',
+    photoHint: 'replace with portrait 01',
+    bio: 'Use this space for the teammate’s background, key responsibilities, and how they helped shape the SoilSyn story from idea to execution.'
+  },
+  {
+    name: 'Member Name 02',
+    role: 'Wet Lab',
+    label: 'Student member',
+    tone: 'water',
+    photoHint: 'replace with portrait 02',
+    bio: 'This card works well for experimental strengths, favorite lab moments, and the role this member played in turning design ideas into repeatable biological workflows.'
+  },
+  {
+    name: 'Member Name 03',
+    role: 'Dry Lab',
+    label: 'Student member',
+    tone: 'moss',
+    photoHint: 'replace with portrait 03',
+    bio: 'Keep this for modeling, data analysis, or systems thinking. The hover interaction is designed to keep the portrait large at first and then reveal the biography naturally.'
+  },
+  {
+    name: 'Member Name 04',
+    role: 'Human Practices',
+    label: 'Student member',
+    tone: 'clay',
+    photoHint: 'replace with portrait 04',
+    bio: 'You can describe outreach work, stakeholder interviews, ethical reflection, and how this member connected technical design with social context.'
+  },
+  {
+    name: 'Member Name 05',
+    role: 'Design / Wiki',
+    label: 'Student member',
+    tone: 'leaf',
+    photoHint: 'replace with portrait 05',
+    bio: 'Reserve this space for visual design, storytelling, or front-end implementation work, especially if the teammate helped translate research into public-facing communication.'
+  },
+  {
+    name: 'Member Name 06',
+    role: 'Integrated Support',
+    label: 'Student member',
+    tone: 'sand',
+    photoHint: 'replace with portrait 06',
+    bio: 'Use the final card for another contributor, subgroup lead, or cross-functional role. The layout supports both short bios and longer introductions.'
+  }
+];
+---
+
+<div class="cx-layout-page cx-layout-page--team">
+  <section class="page-hero page-hero--team page-hero--team-custom">
+    <div class="page-shell team-hero-shell">
+      <div class="section-head reveal">
+        <p class="eyebrow">Team</p>
+        <h1>People, fieldwork, and a team page built around presence.</h1>
+        <p class="page-hero__lead">
+          This version keeps the larger block composition and the portrait-driven interaction from Astro_2, but the colors,
+          materials, and overall atmosphere are adjusted to stay inside the original cx-igem visual language.
+        </p>
+      </div>
+
+      <article class="team-collage-module reveal reveal--delay">
+        <div class="team-collage-module__meta">
+          <p class="mini-label">Reserved hero block</p>
+          <h2>Featured group-photo composition placeholder</h2>
+          <p>
+            Keep this area for a future collage, group photo, or narrative headline composition. The block proportions and
+            layered placement follow the Astro_2 layout, while the rendering is tuned to feel native to cx-igem.
+          </p>
+        </div>
+
+        <div class="team-collage-module__stage" aria-label="Reserved area for future team collage design">
+          <span class="team-collage-module__wire team-collage-module__wire--one" aria-hidden="true"></span>
+          <span class="team-collage-module__wire team-collage-module__wire--two" aria-hidden="true"></span>
+          <span class="team-collage-module__wire team-collage-module__wire--three" aria-hidden="true"></span>
+
+          <div class="team-collage-module__frame team-collage-module__frame--center">
+            <span>Main team composition placeholder</span>
+          </div>
+
+          <div class="team-collage-module__frame team-collage-module__frame--top">
+            <span>Headline or supporting image</span>
+          </div>
+
+          <div class="team-collage-module__frame team-collage-module__frame--left">
+            <span>Team image block</span>
+          </div>
+
+          <div class="team-collage-module__frame team-collage-module__frame--right">
+            <span>Secondary portrait block</span>
+          </div>
+
+          <div class="team-collage-module__word" aria-hidden="true">team</div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section class="page-section page-section--tinted team-members-section">
+    <div class="page-shell section-head reveal">
+      <p class="eyebrow">Student Members</p>
+      <h2>Large portrait cards that open into biography panels.</h2>
+      <p>
+        Replace the image placeholders with your real portraits. On hover, the full-height portrait contracts into a small
+        circular avatar and reveals the text area underneath, matching the interaction pattern from Astro_2.
+      </p>
+    </div>
+
+    <div class="team-members-grid">
+      {
+        members.map((member, index) => (
+          <article
+            class={`team-member-card team-member-card--${member.tone} reveal reveal--stagger-${(index % 4) + 1}`}
+            tabindex="0"
+          >
+            <div class="team-member-card__photo-shell" aria-hidden="true">
+              <div class="team-member-card__photo">
+                <div class="team-member-card__photo-fill">
+                  <span>{member.photoHint}</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="team-member-card__content">
+              <p class="mini-label">{member.label}</p>
+              <h3>{member.name}</h3>
+              <p class="team-member-card__role">{member.role}</p>
+              <div class="team-member-card__divider"></div>
+              <p class="team-member-card__bio">{member.bio}</p>
+            </div>
+          </article>
+        ))
+      }
+    </div>
+  </section>
+
+  <section class="page-section">
+    <article class="content-card reveal">
+      <p class="mini-label">Editing note</p>
+      <h3>How to update this page later</h3>
+      <p>
+        Replace the placeholder frames and member data directly in <code>src/components/pages/TeamShowcase.astro</code>.
+        When you switch the placeholders to real photos, keep the same class names so the hover transition remains intact.
+      </p>
+    </article>
+  </section>
+
+  <script type="module" src={teamExperimentScriptUrl}></script>
+</div>
