@@ -296,6 +296,44 @@
   color: #0d2314;
 }
 
+.footer-repo {
+  font-size: 13px;
+  color: rgba(23, 51, 29, 0.86);
+  margin: 0 0 20px 0;
+  letter-spacing: 0.5px;
+}
+
+.footer-repo a {
+  color: #ffb300;
+  text-decoration: none;
+  font-weight: 600;
+  background: linear-gradient(135deg, #ffb300, #f57f17);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.footer-repo a::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #ffb300, #f57f17);
+  transition: width 0.3s ease;
+}
+
+.footer-repo a:hover {
+  transform: translateY(-1px);
+}
+
+.footer-repo a:hover::after {
+  width: 100%;
+}
+
 /* Footer Badges */
 .footer-badges {
   display: flex;
